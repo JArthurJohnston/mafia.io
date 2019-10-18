@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .App-logo {
@@ -19,4 +21,11 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+canvas {
+  display: block;
+  background-color: #000000;
+  width: 100vw;
+  height: 100vh;
 }
