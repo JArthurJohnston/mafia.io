@@ -5,11 +5,26 @@ import { init } from '../game'
 const FRAME_INTERVAL = 1000 / 60 //60 fps
 const HEIGHT = window.innerHeight
 const WIDTH = window.innerWidth
+const ASPECT_RATIO = 9/16
+const RESOLUTION = {
+    width: 1152,
+    height: 648
+}
+
+function baseDimension(){
+    return HEIGHT > WIDTH ? WIDTH : HEIGHT
+}
 
 export class Canvas extends Component {
 
     constructor(){
         super()
+        this.width = baseDimension()
+        this.height = this.width * ASPECT_RATIO
+        this.canvasStyle = {
+            width: `${this.width}px`,
+            height: `${this.height}px`,
+        }
         this.handleMouseClick = this.handleMouseClick.bind(this)
         this.lastFrameTime = 0
         this.loop = this.loop.bind(this);
@@ -25,8 +40,8 @@ export class Canvas extends Component {
         requestAnimationFrame(this.loop); 
     }
 
-      componentDidMount(){  
-          this.g = new GraphicsHelper(this.refs.canvas.getContext("2d"), WIDTH, HEIGHT)
+      componentDidMount(){
+          this.g = new GraphicsHelper(this.refs.canvas, RESOLUTION.width, RESOLUTION.height, this.width, this.height)
 
           this.game.startLoop()
           requestAnimationFrame(this.loop);
@@ -36,9 +51,9 @@ export class Canvas extends Component {
         console.log(event.clientX, event.clientY)
     }
 
-    render() { 
+    render() {
         return (
-            <canvas ref="canvas" width={WIDTH} height={HEIGHT} onClick={this.handleMouseClick}></canvas>
+            <canvas id='screen' ref="canvas" style={this.canvasStyle} width={RESOLUTION.width} height={RESOLUTION.height} onClick={this.handleMouseClick}></canvas>
         )
     }
 }

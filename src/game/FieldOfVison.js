@@ -11,11 +11,14 @@ export class FieldOfVison extends GameObject {
     this.lookX = 0
     this.lookY = 0
     this.color = "white"
-    document.onmousemove = this.handleMouseMove
+    // document.querySelector('#screen').onmousemove = this.handleMouseMove
+    document.onmousemove = this.handleMouseMove //TODO extract stuff like this into an input handler
   }
 
   render(graphics){
-    graphics.drawLine(this.offsetX(), this.offsetY(), this.lookX, this.lookY, this.color)
+    const x = this.lookX * (graphics.width / window.innerWidth) - graphics.xOffset()
+    const y = this.lookY * (graphics.height / window.innerHeight) - graphics.yOffset()
+    graphics.drawLine(this.offsetX(), this.offsetY(), x, y, this.color)
   }
 
   handleMouseMove(event){
@@ -23,3 +26,4 @@ export class FieldOfVison extends GameObject {
     this.lookY = event.pageY
   }
 }
+

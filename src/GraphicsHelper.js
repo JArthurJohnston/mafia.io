@@ -1,13 +1,27 @@
 
 export class GraphicsHelper {
 
-    constructor(context, windowWidth, windowHeight){
-        this.context = context
+    constructor(canvas, windowWidth, windowHeight, width, height){
+        this.canvas = canvas
+        this.context = canvas.getContext("2d")
         this.drawCircle = this.drawCircle.bind(this)
         this.drawRect = this.drawRect.bind(this)
         this.drawLine = this.drawLine.bind(this)
+        this.drawText = this.drawText.bind(this);
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth
+        this.width = width
+        this.height = height
+        this.xOffset = this.xOffset.bind(this);
+        this.yOffset = this.yOffset.bind(this);
+    }
+
+    xOffset(){
+        return this.canvas.offsetLeft
+    }
+
+    yOffset(){
+        return this.canvas.offsetTop
     }
 
     drawText(x, y, text, color, font = "30px Arial"){
