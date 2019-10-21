@@ -25,12 +25,11 @@ export class Canvas extends Component {
         requestAnimationFrame(this.loop); 
     }
 
-      componentDidMount(){  
-          this.g = new GraphicsHelper(this.refs.canvas.getContext("2d"), WIDTH, HEIGHT)
-
-          this.game.startLoop()
-          requestAnimationFrame(this.loop);
-      }
+    componentDidMount(){  
+        this.g = new GraphicsHelper(this.refs.canvas.getContext("2d"), WIDTH, HEIGHT)
+        this.game.startLoop()
+        requestAnimationFrame(this.loop);
+    }
     
     handleMouseClick(event){
         console.log(event.clientX, event.clientY)
