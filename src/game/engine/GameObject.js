@@ -43,10 +43,10 @@ export class GameObject {
     return this.localY + this.parent.offsetY()
   }
 
-  startLoop(){
-    this.start()
+  startLoop(graphics){
+    this.start(graphics)
     this.children.forEach(child => {
-      child.startLoop()
+      child.startLoop(graphics)
     });
   }
 

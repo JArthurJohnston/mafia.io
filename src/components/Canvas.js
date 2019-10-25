@@ -27,7 +27,8 @@ export class Canvas extends Component {
 
     componentDidMount(){  
         this.g = new GraphicsHelper(this.refs.canvas.getContext("2d"), WIDTH, HEIGHT)
-        this.game.startLoop()
+
+        this.game.startLoop(this.g)
         requestAnimationFrame(this.loop);
     }
     

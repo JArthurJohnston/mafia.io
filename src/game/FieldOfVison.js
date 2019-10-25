@@ -1,32 +1,36 @@
 import { GameObject } from "./engine/GameObject";
-import { Line, buildLine, slope } from "./engine/shapes/Line";
+import { angleBetween, radiansToDegrees, degreesToRadians } from "./engine/math/PointMath";
+
+const VIEW_OFFSET = degreesToRadians(140)
 
 export class FieldOfVison extends GameObject {
 
   constructor(){
     super()
     this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.fovDistance = 1000
   }
 
-  start(){
+  start(graphics){
     this.lookX = 0
     this.lookY = 0
+    this.angle = 0
     this.color = "white"
-    this.line1 = buildLine(this.offsetX(), this.offsetY(), 0, 1000)
-    this.line2 = buildLine(this.offsetX(), this.offsetY(), 1, 1000)
     document.onmousemove = this.handleMouseMove
   }
 
   update(delta){
-    // let direction = slope(this.offsetX(), this.offsetY(), this.lookX, this.lookY)
+    this.angle = angleBetween(this.offsetX(), this.offsetY(), this.lookX, this.lookY)
   }
 
   render(graphics){
-    graphics.drawLine(this.offsetX(), this.offsetY(), this.lookX, this.lookY, this.color)
-  }
-
-  lookDirection(){
-
+    graphics.save()
+    graphics.translate(this.offsetX(), this.offsetY())
+    graphics.rotate(this.angle - VIEW_OFFSET)
+    graphics.drawLine(0, 0, 0, this.fovDistance, this.color)
+    graphics.drawLine(0, 0, this.fovDistance, 0, this.color)
+    // graphics.drawText(10, 0, `Angle: ${radiansToDegrees(this.angle)}`, this.color)
+    graphics.restore()
   }
 
   handleMouseMove(event){

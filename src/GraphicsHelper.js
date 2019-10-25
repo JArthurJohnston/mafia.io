@@ -6,8 +6,13 @@ export class GraphicsHelper {
         this.drawCircle = this.drawCircle.bind(this)
         this.drawRect = this.drawRect.bind(this)
         this.drawLine = this.drawLine.bind(this)
+        this.rotate = this.rotate.bind(this);
+        this.restore = this.restore.bind(this);
+        this.save = this.save.bind(this);
+        this.translate = this.translate.bind(this);
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth
+        this.context.imageSmoothingEnabled = false
     }
 
     drawText(x, y, text, color, font = "30px Arial"){
@@ -30,6 +35,22 @@ export class GraphicsHelper {
         this.context.moveTo(xa, ya);
         this.context.lineTo(xb, yb);
         this.context.stroke(); 
+    }
+    
+    rotate(angle){
+        this.context.rotate(angle)
+    }
+    
+    restore(){
+        this.context.restore()
+    }
+
+    save(){
+        this.context.save()
+    }
+
+    translate(x, y){
+        this.context.translate(x, y)
     }
 
     drawRect(x, y, w, h, color){

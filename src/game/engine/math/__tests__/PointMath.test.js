@@ -1,4 +1,4 @@
-import { radiansToDegrees, degreesToRadians, rotateAround } from "../PointMath"
+import { radiansToDegrees, degreesToRadians, rotateAround, angleBetween } from "../PointMath"
 
 describe('PointMath', () => {
   describe('radiansToDegrees', () => {
@@ -33,6 +33,25 @@ describe('PointMath', () => {
       result = rotateAround(0,0, 8,0, 90)
       // expect(result.x).toEqual(0)
       expect(result.y).toEqual(8)
+    })
+  })
+
+  describe('angleBetween', () => {
+    it('should return the angle between the center of an object and a point', () => {
+      expect(angleBetween(0,0, 0,-4)).toEqual(degreesToRadians(0))
+      expect(angleBetween(0,0, 0,4)).toEqual(degreesToRadians(180))
+      expect(angleBetween(0,0, 0,0)).toEqual(degreesToRadians(180))
+
+      expect(angleBetween(0,0, 5,0)).toEqual(degreesToRadians(90))
+      expect(angleBetween(0,0, -5,0)).toEqual(degreesToRadians(-90))
+
+      expect(angleBetween(0,0, -4,-4)).toEqual(degreesToRadians(-45))
+      expect(angleBetween(0,0, 4,-4)).toEqual(degreesToRadians(45))
+
+      expect(angleBetween(5,5, 8,10)).toEqual(degreesToRadians(149.03624346792648))
+      expect(angleBetween(5,5, 0,10)).toEqual(degreesToRadians(-135))
+
+      expect(angleBetween(5,5, 5,10)).toEqual(degreesToRadians(180))
     })
   })
 })

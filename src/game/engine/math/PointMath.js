@@ -7,12 +7,6 @@ export function radiansToDegrees(radians){
 }
 
 export function rotateAround(centerX, centerY, x, y, angle) {
-  // var radians = degreesToRadians(angle),
-  //     cos = Math.cos(radians),
-  //     sin = Math.sin(radians),
-  //     nx = (cos * (x - centerX)) + (sin * (y - centerY)) + centerX,
-  //     ny = (cos * (y - centerY)) - (sin * (x - centerX)) + centerY;
-  // return [nx, ny];
   return rotate_point(x, y, centerX, centerY, angle)
 }
 
@@ -25,5 +19,16 @@ function rotate_point(pointX, pointY, originX, originY, angle) {
       y: sinTheta * (pointX-originX) + cosTheta * (pointY-originY) + originY
   };
 }
-
-
+/**
+ * Returns the angle, in radians, between the line made by the 4 coordinate parameters and 
+ * a vertical line pointing upwards starting at the first coordinates. This angle will be within the range 0 & +-180
+ * 
+ * @param {number} x1 the x coordinate of the first point
+ * @param {number} y1 the y coordinate of the first point
+ * @param {number} x2 the x coordinate of the second point
+ * @param {number} y2 the y coordinate of the second point
+ * @returns {number} the angle in radians
+ */
+export function angleBetween(x1, y1, x2, y2){
+  return Math.atan2(x2 - x1, (y2 - y1) * -1 );
+}
