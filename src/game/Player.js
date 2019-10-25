@@ -27,7 +27,7 @@ export class Player extends GameObject {
   }
 
   render(graphics){
-    graphics.drawCircle(this.offsetX(), this.offsetY(), this.radius, this.color)
+    graphics.drawCircle(this.offsetX, this.offsetY, this.radius, this.color)
   }
 
   update(delta){
@@ -50,8 +50,8 @@ export class Player extends GameObject {
   }
 
   handleMouseClick(x, y){
-    let [rise, run] = riseOverRun(this.offsetX(), this.offsetY(), x, y)
-    let bullet = new Bullet(rise, run, this.offsetX(), this.offsetY()) 
+    let [rise, run] = riseOverRun(this.offsetX, this.offsetY, x, y)
+    let bullet = new Bullet(rise, run, this.offsetX, this.offsetY) 
     bullet.start()
     this.addChild(bullet)
   }

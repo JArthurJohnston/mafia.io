@@ -103,8 +103,8 @@ describe('GameObject', () => {
 
   describe('offsets', () => {
     it('should default to zero', () => {
-      expect(obj.offsetX()).toEqual(0)
-      expect(obj.offsetY()).toEqual(0)
+      expect(obj.offsetX).toEqual(0)
+      expect(obj.offsetY).toEqual(0)
     })
 
     it('should add the parents offsets to its offsets', () => {
@@ -121,8 +121,8 @@ describe('GameObject', () => {
       obj.addChild(child)
       child.addChild(grandChild)
 
-      expect(grandChild.offsetX()).toEqual(8)
-      expect(grandChild.offsetY()).toEqual(11)
+      expect(grandChild.offsetX).toEqual(8)
+      expect(grandChild.offsetY).toEqual(11)
     })
   })
 

@@ -7,6 +7,6 @@ export class Level extends GameObject {
   }
 
   render(graphics){
-    graphics.drawRect(this.offsetX(), this.offsetY(), graphics.windowWidth, graphics.windowHeight, this.color)
+    graphics.drawRect(this.offsetX, this.offsetY, graphics.windowWidth, graphics.windowHeight, this.color)
   }
 }

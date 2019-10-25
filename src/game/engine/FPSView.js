@@ -15,6 +15,6 @@ export class FPSView extends GameObject {
 
   render(graphics){
     this.frameCount++
-    graphics.drawText(this.offsetX(),this.offsetY(), `FPS: ${this.fps}`, this.color)
+    graphics.drawText(this.offsetX ,this.offsetY, `FPS: ${this.fps}`, this.color)
   }
 }

@@ -1,8 +1,8 @@
 import _ from "lodash"
 
 const BASE_PARENT = {
-  offsetX: () => 0,
-  offsetY: () => 0
+  offsetX: 0,
+  offsetY: 0
 }
 
  /**
@@ -27,8 +27,6 @@ export class GameObject {
     this.updateLoop = this.updateLoop.bind(this);
     this.renderLoop = this.renderLoop.bind(this);
     this.addChild = this.addChild.bind(this);
-    this.offsetX = this.offsetX.bind(this);
-    this.offsetY = this.offsetY.bind(this);
     this.startLoop = this.startLoop.bind(this);
     this.removeChild = this.removeChild.bind(this);
   }
@@ -37,12 +35,12 @@ export class GameObject {
    * When updating, use localX and localY.
    * When rendering, use offsetX and offsetY
    */
-  offsetX() {
-    return this.localX + this.parent.offsetX()
+  get offsetX() {
+    return this.localX + this.parent.offsetX
   }
 
-  offsetY() {
-    return this.localY + this.parent.offsetY()
+  get offsetY() {
+    return this.localY + this.parent.offsetY
   }
 
   startLoop(graphics){
