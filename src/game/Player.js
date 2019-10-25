@@ -51,6 +51,8 @@ export class Player extends GameObject {
 
   handleMouseClick(x, y){
     let [rise, run] = riseOverRun(this.offsetX(), this.offsetY(), x, y)
-    this.addChild(new Bullet(rise, run, this.offsetX(), this.offsetY()))
+    let bullet = new Bullet(rise, run, this.offsetX(), this.offsetY()) 
+    bullet.start()
+    this.addChild(bullet)
   }
 }
