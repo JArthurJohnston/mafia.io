@@ -1,5 +1,8 @@
 import { GameObject } from "./engine/GameObject";
 import { keyBinding } from "../KeyBinding";
+import MouseInput from "./engine/input/MouseHandler"
+import { Bullet } from "./Bullet";
+import { riseOverRun } from "./engine/shapes/Line";
 
 const wKey = keyBinding("w")
 const aKey = keyBinding("a")
@@ -11,6 +14,7 @@ export class Player extends GameObject {
   constructor(){
     super()
     this.handleKeyboardInput = this.handleKeyboardInput.bind(this);
+    this.handleMouseClick = this.handleMouseClick.bind(this);
   }
 
   start(){
@@ -19,6 +23,7 @@ export class Player extends GameObject {
     this.radius = 20
     this.speed = 5
     this.color = "blue"
+    MouseInput.addClickHandler(this.handleMouseClick)
   }
 
   render(graphics){
@@ -42,5 +47,10 @@ export class Player extends GameObject {
     if(dKey.isDown){
         this.localX += this.speed * delta
     }
+  }
+
+  handleMouseClick(x, y){
+    let [rise, run] = riseOverRun(this.offsetX(), this.offsetY(), x, y)
+    this.addChild(new Bullet(rise, run, this.offsetX(), this.offsetY()))
   }
 }

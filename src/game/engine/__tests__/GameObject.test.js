@@ -125,4 +125,19 @@ describe('GameObject', () => {
       expect(grandChild.offsetY()).toEqual(11)
     })
   })
+
+  describe('removeChild', () => {
+    it('should remove a child game object from the parent', () => {
+      let child1 = new GameObject()
+      let child2 = new GameObject()
+      
+      obj.addChild(child1)
+      obj.addChild(child2)
+
+      obj.removeChild(child1)
+
+      expect(obj.children[0]).toEqual(child2)
+      expect(obj.children.length).toEqual(1)
+    })
+  })
 })

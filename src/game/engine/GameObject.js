@@ -1,3 +1,4 @@
+import _ from "lodash"
 
 const BASE_PARENT = {
   offsetX: () => 0,
@@ -29,6 +30,7 @@ export class GameObject {
     this.offsetX = this.offsetX.bind(this);
     this.offsetY = this.offsetY.bind(this);
     this.startLoop = this.startLoop.bind(this);
+    this.removeChild = this.removeChild.bind(this);
   }
 
   /**
@@ -50,10 +52,10 @@ export class GameObject {
     });
   }
 
-  updateLoop(delta){
-    this.update(delta)
+  updateLoop(delta, input){
+    this.update(delta, input)
     this.children.forEach(child => {
-      child.updateLoop(delta)
+      child.updateLoop(delta, input)
     });
   }
 
@@ -67,6 +69,10 @@ export class GameObject {
   addChild(gameObject){
     gameObject.parent = this
     this.children.push(gameObject);
+  }
+
+  removeChild(gameObject){
+    _.remove(this.children, go => go === gameObject)
   }
 
   start(){
