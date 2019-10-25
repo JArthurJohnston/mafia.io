@@ -2,7 +2,7 @@
   "name": "mafia.io",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://pages.github.com/JArthurJohnston/mafia.io",
+  "homepage": "https://jarthurjohnston.github.io/mafia.io/",
   "dependencies": {
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
