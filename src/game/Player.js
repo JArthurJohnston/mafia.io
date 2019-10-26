@@ -2,7 +2,7 @@ import { GameObject } from "./engine/GameObject";
 import { keyBinding } from "../KeyBinding";
 import MouseInput from "./engine/input/MouseHandler"
 import { Bullet } from "./Bullet";
-import { riseOverRun } from "./engine/shapes/Line";
+import smiley from "../res/simple-smiley.png"
 
 const wKey = keyBinding("w")
 const aKey = keyBinding("a")
@@ -15,19 +15,35 @@ export class Player extends GameObject {
     super()
     this.handleKeyboardInput = this.handleKeyboardInput.bind(this);
     this.handleMouseClick = this.handleMouseClick.bind(this);
+    this.imageIsLoaded = false
+    this.loadedImage = this.loadedImage.bind(this);
+  }
+
+  loadedImage(){
+    this.imageIsLoaded = true;
+  }
+
+  loadImage(){
+    let image = new Image()
+    image.src = ""
+    image.addEventListener("load", this.loadedImage)
+    image.src = smiley
+    return image
   }
 
   start(){
     this.localX = 50
     this.localY = 50
-    this.radius = 20
+    this.radius = 40
     this.speed = 5
     this.color = "blue"
+    this.image = this.loadImage()
     MouseInput.addClickHandler(this.handleMouseClick)
   }
 
   render(graphics){
-    graphics.drawCircle(this.offsetX, this.offsetY, this.radius, this.color)
+    if(this.imageIsLoaded)
+      graphics.drawSprite(this.image, this.offsetX, this.offsetY, this.radius, this.radius) 
   }
 
   update(delta){

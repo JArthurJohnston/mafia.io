@@ -57,4 +57,8 @@ export class GraphicsHelper {
     drawSquare(x, y, size, color){
         this.drawRect(x, y, size, size, color)
     }
+
+    drawSprite(image, x, y, width, height){
+        this.context.drawImage(image, x - width/2, y - height/2, width, height)
+    }
 }

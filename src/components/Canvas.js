@@ -34,7 +34,9 @@ export class Canvas extends Component {
 
     render() { 
         return (
+            <>
             <canvas ref="canvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+            </>
         )
     }
 }

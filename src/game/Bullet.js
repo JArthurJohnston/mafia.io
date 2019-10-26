@@ -36,4 +36,3 @@ export class Bullet extends GameObject {
         graphics.restore()
     }
 }
-
