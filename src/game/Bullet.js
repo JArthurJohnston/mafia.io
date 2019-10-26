@@ -1,38 +1,39 @@
 import { GameObject } from "./engine/GameObject";
-import { distanceBetween } from "./engine/shapes/Line";
-import { angleBetween } from "./engine/math/PointMath";
+import { angleBetween, degreesToRadians } from "./engine/math/PointMath";
+const oneEighty = degreesToRadians(180)
 
 export class Bullet extends GameObject {
 
     constructor(targetX, targetY, startX, startY){
         super()
-        this.targetX = targetX
-        this.targetY = targetY
-        this.startX = startX
-        this.startY = startY
+        //technically I should be translating world coordinates into local coords, but since this objects parent offset will be 0,0 it wont matter
+        this.localX = startX 
+        this.localY = startY
+        this.distance = 0
+        
+        this.angle = angleBetween(startX, startY, targetX, targetY) - oneEighty
     }
 
     start(){
         this.maxDistance = 1000
         this.color="white"
         this.size = 6
-
-        let speed = 20
-        let angle = angleBetween(this.startX, this.startY, this.targetX, this.targetY)
-
-        this.xDistance = Math.cos(angle) * speed
-        this.yDistance = Math.sin(angle) * speed
+        this.speed = 30
     }
 
     update(delta){
-        this.localX += this.xDistance * delta
-        this.localY += this.yDistance * delta
-        if(distanceBetween(this.offsetX, this.offsetY, this.startX, this.startY) > this.maxDistance){
+        this.distance += this.speed * delta
+        if((this.distance - this.localY) > this.maxDistance) {
             this.parent.removeChild(this)
         }
     }
 
     render(graphics){
-        graphics.drawRect(this.offsetX, this.offsetY, this.size, this.size, this.color)
+        graphics.save()
+        graphics.translate(this.offsetX, this.offsetY)
+        graphics.rotate(this.angle)
+        graphics.drawSquare(0, this.distance, this.size, this.color)
+        graphics.restore()
     }
 }
+

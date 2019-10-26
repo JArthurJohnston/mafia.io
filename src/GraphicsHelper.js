@@ -3,13 +3,6 @@ export class GraphicsHelper {
 
     constructor(context, windowWidth, windowHeight){
         this.context = context
-        this.drawCircle = this.drawCircle.bind(this)
-        this.drawRect = this.drawRect.bind(this)
-        this.drawLine = this.drawLine.bind(this)
-        this.rotate = this.rotate.bind(this);
-        this.restore = this.restore.bind(this);
-        this.save = this.save.bind(this);
-        this.translate = this.translate.bind(this);
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth
         this.context.imageSmoothingEnabled = false
@@ -59,5 +52,9 @@ export class GraphicsHelper {
         this.context.rect(x, y, w, h)
         this.context.fill();
         this.context.stroke();
+    }
+
+    drawSquare(x, y, size, color){
+        this.drawRect(x, y, size, size, color)
     }
 }

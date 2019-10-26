@@ -31,14 +31,17 @@ export class GameObject {
     this.removeChild = this.removeChild.bind(this);
   }
 
+ 
   /**
-   * When updating, use localX and localY.
-   * When rendering, use offsetX and offsetY
+   * @returns {number} the total x offset of this object and all its parent objects (IE its world position)
    */
   get offsetX() {
     return this.localX + this.parent.offsetX
   }
 
+  /**
+   * @returns {number} the total y offset of this object and all its parent objects (IE its world position)
+   */
   get offsetY() {
     return this.localY + this.parent.offsetY
   }
