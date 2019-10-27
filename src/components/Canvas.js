@@ -29,6 +29,7 @@ export class Canvas extends Component {
 
     componentDidMount(){  
         this.g = new GraphicsHelper(this.refs.canvas, WIDTH, HEIGHT)
+        this.g.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
         MouseInput.init()
         load(spritesheet).then(() => {
             this.game.startLoop(this.g)
