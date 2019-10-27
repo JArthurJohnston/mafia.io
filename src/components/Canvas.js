@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import { GraphicsHelper } from '../GraphicsHelper'
 import { init } from '../game'
 import MouseInput from '../game/engine/input/MouseHandler'
+import { load } from '../game/engine/Images'
+import spritesheet from "../res/sprite-sheet.png"
 
 const FRAME_INTERVAL = 1000 / 60 //60 fps
 const HEIGHT = window.innerHeight
@@ -26,17 +28,17 @@ export class Canvas extends Component {
     }
 
     componentDidMount(){  
-        this.g = new GraphicsHelper(this.refs.canvas.getContext("2d"), WIDTH, HEIGHT)
+        this.g = new GraphicsHelper(this.refs.canvas, WIDTH, HEIGHT)
         MouseInput.init()
-        this.game.startLoop(this.g)
-        requestAnimationFrame(this.loop);
+        load(spritesheet).then(() => {
+            this.game.startLoop(this.g)
+            requestAnimationFrame(this.loop);
+        })
     }
 
     render() { 
         return (
-            <>
             <canvas ref="canvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
-            </>
         )
     }
 }

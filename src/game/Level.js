@@ -1,14 +1,13 @@
 import { GameObject } from "./engine/GameObject";
+import { cacheTiledSprite } from "../GraphicsHelper";
 
 export class Level extends GameObject {
-
+  
   start(){
-    this.color = "black"
+    this.cachedBackground = cacheTiledSprite(53, 27)
   }
 
   render(graphics){
-    graphics.drawRect(this.offsetX, this.offsetY, graphics.windowWidth, graphics.windowHeight, this.color)
-    graphics.drawLine(graphics.windowWidth/2, 0,  graphics.windowWidth/2, graphics.windowHeight, "white")
-    graphics.drawLine(0, graphics.windowHeight/2, graphics.windowWidth, graphics.windowHeight/2, "white")
+    graphics.drawBackground(this.cachedBackground)
   }
 }

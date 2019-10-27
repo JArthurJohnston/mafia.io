@@ -1,11 +1,15 @@
+import { drawStoneFloorOn, drawPlayerOn } from "./game/engine/Images";
+
+const ONE_RADIAN = 2 * Math.PI;
 
 export class GraphicsHelper {
 
-    constructor(context, windowWidth, windowHeight){
-        this.context = context
+    constructor(canvas, windowWidth, windowHeight){
+        this.context = canvas.getContext("2d", {alpha: false})
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth
         this.context.imageSmoothingEnabled = false
+        this.context.imageSmoothingQuality = "low"
     }
 
     drawText(x, y, text, color, font = "30px Arial"){
@@ -17,7 +21,7 @@ export class GraphicsHelper {
     drawCircle(x, y, radius, color){
         this.context.fillStyle = color;
         this.context.beginPath();
-        this.context.arc(x, y, radius, 0, 2 * Math.PI);
+        this.context.arc(x, y, radius, 0, ONE_RADIAN);
         this.context.fill();
         this.context.stroke();
     }
@@ -59,6 +63,27 @@ export class GraphicsHelper {
     }
 
     drawSprite(image, x, y, width, height){
-        this.context.drawImage(image, x - width/2, y - height/2, width, height)
+        this.context.drawImage(image, x, y, width, height)
     }
+
+    drawBackground(image){
+        this.context.drawImage(image, 0, 0)
+    }
+
+    drawPlayer(x, y){
+        drawPlayerOn(this.context, x, y)
+    }
+}
+
+export function cacheTiledSprite(rows, columns){
+    const cachCanvas = document.createElement('canvas');
+    cachCanvas.width = 40 * rows
+    cachCanvas.height = 40 * columns
+    const context = cachCanvas.getContext('2d', {alpha: false})
+        for (let row = 0; row < rows; row++) {
+            for (let column = 0; column < columns; column++) {
+                drawStoneFloorOn(context, row * 40, column * 40)
+            }
+        }
+    return cachCanvas
 }
