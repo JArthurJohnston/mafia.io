@@ -25,7 +25,7 @@ export class Player extends GameObject {
   }
 
   render(graphics){
-    graphics.drawPlayer(this.offsetX - 20, this.offsetY - 20)
+    graphics.drawPlayer(Math.floor(this.offsetX - 20), Math.floor(this.offsetY - 20))
   }
 
   update(delta){

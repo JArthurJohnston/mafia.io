@@ -22,7 +22,7 @@ export class Bullet extends GameObject {
     }
 
     update(delta){
-        this.distance += this.speed * delta
+        this.distance += Math.floor(this.speed * delta)
         if((this.distance - this.localY) > this.maxDistance) {
             this.parent.removeChild(this)
         }
