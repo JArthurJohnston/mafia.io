@@ -85,6 +85,10 @@ function cacheImages(spriteSheet, callback) {
   callback()
 }
 
+export function cacheSprite(posX, posY, width, height){
+  
+}
+
 export function drawPlayerOn(context, x, y) {
   context.drawImage(cache, 0,0,SPRITE_WIDTH,SPRITE_HEIGHT, x, y,SPRITE_WIDTH,SPRITE_HEIGHT)
 }
