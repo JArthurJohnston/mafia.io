@@ -1,61 +1,70 @@
-import { drawStoneFloorOn, drawPlayerOn } from "./game/engine/Images";
+import { drawStoneFloorOn, drawPlayerOn, drawBulletOn } from "./game/engine/Images";
 
 const ONE_RADIAN = 2 * Math.PI;
 
 export class GraphicsHelper {
 
-    constructor(canvas, windowWidth, windowHeight){
-        this.context = canvas.getContext("2d", {alpha: false})
+    constructor(canvases, windowWidth, windowHeight){
+        this.layers = canvases
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth
-        this.context.imageSmoothingEnabled = false
-        this.context.imageSmoothingQuality = "low"
+        this.setupCanvases(canvases)
+    }
+
+    setupCanvases(canvases){
+        for (let i = 0; i < canvases.length; i++) {
+            this.getContext(i).imageSmoothingEnabled = false
+        }
+    }
+
+    getContext(layerIndex = 0, config = {alpha:false}){
+        return this.layers[layerIndex].getContext("2d", config)
     }
 
     drawText(x, y, text, color, font = "30px Arial"){
-        this.context.fillStyle = color;
-        this.context.font = font;
-        this.context.fillText(text, x, y);
+        this.getContext().fillStyle = color;
+        this.getContext().font = font;
+        this.getContext().fillText(text, x, y);
     }
 
     drawCircle(x, y, radius, color){
-        this.context.fillStyle = color;
-        this.context.beginPath();
-        this.context.arc(x, y, radius, 0, ONE_RADIAN);
-        this.context.fill();
-        this.context.stroke();
+        this.getContext().fillStyle = color;
+        this.getContext().beginPath();
+        this.getContext().arc(x, y, radius, 0, ONE_RADIAN);
+        this.getContext().fill();
+        this.getContext().stroke();
     }
 
     drawLine(xa, ya, xb, yb, color){
-        this.context.strokeStyle = color;
-        this.context.beginPath();
-        this.context.moveTo(xa, ya);
-        this.context.lineTo(xb, yb);
-        this.context.stroke(); 
+        this.getContext().strokeStyle = color;
+        this.getContext().beginPath();
+        this.getContext().moveTo(xa, ya);
+        this.getContext().lineTo(xb, yb);
+        this.getContext().stroke(); 
     }
     
     rotate(angle){
-        this.context.rotate(angle)
+        this.getContext().rotate(angle)
     }
     
     restore(){
-        this.context.restore()
+        this.getContext().restore()
     }
 
     save(){
-        this.context.save()
+        this.getContext().save()
     }
 
     translate(x, y){
-        this.context.translate(x, y)
+        this.getContext().translate(x, y)
     }
 
     drawRect(x, y, w, h, color){
-        this.context.fillStyle = color;
-        this.context.beginPath();
-        this.context.rect(x, y, w, h)
-        this.context.fill();
-        this.context.stroke();
+        this.getContext().fillStyle = color;
+        this.getContext().beginPath();
+        this.getContext().rect(x, y, w, h)
+        this.getContext().fill();
+        this.getContext().stroke();
     }
 
     drawSquare(x, y, size, color){
@@ -63,15 +72,19 @@ export class GraphicsHelper {
     }
 
     drawSprite(image, x, y, width, height){
-        this.context.drawImage(image, x, y, width, height)
+        this.getContext().drawImage(image, x, y, width, height)
     }
 
     drawBackground(image){
-        this.context.drawImage(image, 0, 0)
+        this.getContext().drawImage(image, 0, 0)
     }
 
     drawPlayer(x, y){
-        drawPlayerOn(this.context, x, y)
+        drawPlayerOn(this.getContext(), x, y)
+    }
+
+    drawBullet(x, y){
+        drawBulletOn(this.getContext(), x, y)
     }
 }
 

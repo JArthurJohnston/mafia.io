@@ -16,7 +16,6 @@ export class Bullet extends GameObject {
 
     start(){
         this.maxDistance = 1000
-        this.color="white"
         this.size = 6
         this.speed = 30
     }
@@ -32,7 +31,9 @@ export class Bullet extends GameObject {
         graphics.save()
         graphics.translate(this.offsetX, this.offsetY)
         graphics.rotate(this.angle)
-        graphics.drawSquare(0, this.distance, this.size, this.color)
+        graphics.drawBullet(0, this.distance)
+        graphics.drawBullet(0, this.distance + 10)
+        graphics.drawBullet(0, this.distance + 17)
         graphics.restore()
     }
 }

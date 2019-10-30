@@ -53,10 +53,10 @@ export class GameObject {
     });
   }
 
-  updateLoop(delta, input){
-    this.update(delta, input)
+  updateLoop(delta){
+    this.update(delta)
     this.children.forEach(child => {
-      child.updateLoop(delta, input)
+      child.updateLoop(delta)
     });
   }
 

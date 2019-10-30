@@ -5,7 +5,7 @@ import MouseInput from '../game/engine/input/MouseHandler'
 import { load } from '../game/engine/Images'
 import spritesheet from "../res/sprite-sheet.png"
 
-const FRAME_INTERVAL = 1000 / 60 //60 fps
+const FRAME_INTERVAL = 1000 / 30 //30 fps
 const HEIGHT = window.innerHeight
 const WIDTH = window.innerWidth
 
@@ -27,8 +27,9 @@ export class Canvas extends Component {
         requestAnimationFrame(this.loop); 
     }
 
-    componentDidMount(){  
-        this.g = new GraphicsHelper(this.refs.canvas, WIDTH, HEIGHT)
+    componentDidMount(){
+        let canvases = [this.refs.defaultCanvas]
+        this.g = new GraphicsHelper(canvases, WIDTH, HEIGHT)
         this.g.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
         MouseInput.init()
         load(spritesheet).then(() => {
@@ -39,7 +40,10 @@ export class Canvas extends Component {
 
     render() { 
         return (
-            <canvas ref="canvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+            <>
+                <canvas ref="defaultCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+                {/* <canvas ref="fovCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas> */}
+            </>
         )
     }
 }

@@ -32,19 +32,26 @@ function cacheImages(spriteSheet, callback) {
   context.imageSmoothingEnabled = false
   // cache the player
   context.drawImage(spriteSheet, 0,0,20,20, 0,0,40,40)
+
   // cache the floor
   context.save()
   context.translate(40,0)
   context.drawImage(spriteSheet, 20,0,20,20, 0,0,40,40)
   context.restore()
+
+  //cache the bullet
+  context.save()
+  context.translate(80, 0)
+  context.drawImage(spriteSheet, 80,0,20,20, 0,0,20,20)
+  
   // cache the horizontal wall
   context.save()
-  context.translate(80,0)
+  context.translate(100,0)
   context.drawImage(spriteSheet, 40,0,20,20, 0,0,40,40)
   context.restore()
   // cache the vertical wall
   context.save()
-  context.translate(120,0)
+  context.translate(140,0)
   context.rotate(degreesToRadians(90))
   context.drawImage(spriteSheet, 40,0,20,20, 0,0,40,40)
   context.restore()
@@ -52,41 +59,35 @@ function cacheImages(spriteSheet, callback) {
   //cache the angeled wall corners
 
   context.save()
-  context.translate(160,0)
+  context.translate(180,0)
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
 
   context.save()
-  context.translate(200,0)
+  context.translate(220,0)
   context.rotate(degreesToRadians(90))
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
 
   context.save()
-  context.translate(240,0)
+  context.translate(260,0)
   context.rotate(degreesToRadians(180))
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
   
   context.save()
-  context.translate(280,0)
+  context.translate(300,0)
   context.rotate(degreesToRadians(-90))
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
 
   context.save()
-  context.translate(320,0)
+  context.translate(340,0)
   context.rotate(degreesToRadians(-180))
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
 
-  //cache the bullet
-  
   callback()
-}
-
-export function cacheSprite(posX, posY, width, height){
-  
 }
 
 export function drawPlayerOn(context, x, y) {
@@ -98,5 +99,5 @@ export function drawStoneFloorOn(context, x, y) {
 }
 
 export function drawBulletOn(context, x, y) {
-  
+  context.drawImage(cache, 80,0,20,20, x, y, 20,20)
 }
