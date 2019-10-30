@@ -1,4 +1,4 @@
-import { drawStoneFloorOn, drawPlayerOn, drawBulletOn } from "./game/engine/Images";
+import { drawStoneFloorOn, drawPlayerOn, drawBulletOn, drawVerticalWallOn, drawHorizontalWallOn } from "./game/engine/Images";
 
 const ONE_RADIAN = 2 * Math.PI;
 
