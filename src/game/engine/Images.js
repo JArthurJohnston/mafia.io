@@ -1,9 +1,5 @@
 import { degreesToRadians } from "./math/PointMath"
 
-// const spriteCache = document.createElement("canvas")
-// spriteCache.width = 20
-// spriteCache.height = 20
-
 let spriteSheet, cache
 
 export const SPRITE_WIDTH = 40
@@ -27,7 +23,7 @@ export function load(imagePath){
 function cacheImages(spriteSheet, callback) {
   cache = document.createElement('canvas');
   cache.width = 400
-  cache.height = 40
+  cache.height = 80
   const context = cache.getContext('2d')
   context.imageSmoothingEnabled = false
   // cache the player
@@ -43,20 +39,22 @@ function cacheImages(spriteSheet, callback) {
   context.save()
   context.translate(80, 0)
   context.drawImage(spriteSheet, 80,0,20,20, 0,0,20,20)
-  
+  context.restore()
+
   // cache the horizontal wall
   context.save()
   context.translate(100,0)
   context.drawImage(spriteSheet, 40,0,20,20, 0,0,40,40)
   context.restore()
+
   // cache the vertical wall
   context.save()
-  context.translate(140,0)
+  context.translate(180,0) //need to double the width when rotating, real position is 140
   context.rotate(degreesToRadians(90))
   context.drawImage(spriteSheet, 40,0,20,20, 0,0,40,40)
   context.restore()
 
-  //cache the angeled wall corners
+  // //cache the angeled wall corners
 
   context.save()
   context.translate(180,0)
@@ -64,27 +62,27 @@ function cacheImages(spriteSheet, callback) {
   context.restore()
 
   context.save()
-  context.translate(220,0)
+  context.translate(260,0) //actual 220
   context.rotate(degreesToRadians(90))
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
 
   context.save()
-  context.translate(260,0)
-  context.rotate(degreesToRadians(180))
+  context.translate(260,40)
+  context.rotate(degreesToRadians(-90))
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
   
   context.save()
-  context.translate(300,0)
-  context.rotate(degreesToRadians(-90))
+  context.translate(340,40)
+  context.rotate(degreesToRadians(180))
   context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
   context.restore()
 
+  //cache the skull
   context.save()
-  context.translate(340,0)
-  context.rotate(degreesToRadians(-180))
-  context.drawImage(spriteSheet, 60,0,20,20, 0,0,40,40)
+  context.translate(80,20)
+  context.drawImage(spriteSheet, 0,20,20,20, 0,0,20,20)
   context.restore()
 
   callback()
@@ -100,4 +98,32 @@ export function drawStoneFloorOn(context, x, y) {
 
 export function drawBulletOn(context, x, y) {
   context.drawImage(cache, 80,0,20,20, x, y, 20,20)
+}
+
+export function drawHorizontalWallOn(context, x, y) {
+  context.drawImage(cache, 100,0,40,40, x, y, 20,20)
+}
+
+export function drawVerticalWallOn(context, x, y) {
+  context.drawImage(cache, 140,0,40,40, x, y, 20,20)
+}
+
+export function drawAngeled1WallOn(context, x, y) {
+  context.drawImage(cache, 180,0,40,40, x, y, 20,20)
+}
+
+export function drawAngeled2WallOn(context, x, y) {
+  context.drawImage(cache, 220,0,40,40, x, y, 20,20)
+}
+
+export function drawAngeled3WallOn(context, x, y) {
+  context.drawImage(cache, 260,0,40,40, x, y, 20,20)
+}
+
+export function drawAngeled4WallOn(context, x, y) {
+  context.drawImage(cache, 300,0,40,40, x, y, 20,20)
+}
+
+export function getCache(){
+  return cache
 }
