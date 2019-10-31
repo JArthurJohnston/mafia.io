@@ -3,24 +3,20 @@ import { keyBinding } from "../KeyBinding";
 import MouseInput from "./engine/input/MouseHandler"
 import { Bullet } from "./Bullet";
 
-const wKey = keyBinding("w")
-const aKey = keyBinding("a")
-const sKey = keyBinding("s")
-const dKey = keyBinding("d")
+const HEIGHT = window.innerHeight
+const WIDTH = window.innerWidth
 
 export class Player extends GameObject {
 
   constructor(){
     super()
-    this.handleKeyboardInput = this.handleKeyboardInput.bind(this);
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
 
   start(){
-    this.localX = 50
-    this.localY = 50
+    this.localX = WIDTH / 2
+    this.localY = HEIGHT / 2
     this.radius = 40
-    this.speed = 5
     MouseInput.addClickHandler(this.handleMouseClick)
   }
 
@@ -29,22 +25,7 @@ export class Player extends GameObject {
   }
 
   update(delta){
-    this.handleKeyboardInput(delta)
-  }
-
-  handleKeyboardInput(delta){
-    if(wKey.isDown){
-        this.localY -= this.speed * delta
-    }
-    if(sKey.isDown){
-        this.localY += this.speed * delta
-    }
-    if(aKey.isDown){
-        this.localX -= this.speed * delta
-    }
-    if(dKey.isDown){
-        this.localX += this.speed * delta
-    }
+    // this.handleKeyboardInput(delta)
   }
 
   handleMouseClick(x, y){

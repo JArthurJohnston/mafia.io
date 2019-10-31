@@ -75,8 +75,8 @@ export class GraphicsHelper {
         this.getContext().drawImage(image, x, y, width, height)
     }
 
-    drawBackground(image){
-        this.getContext().drawImage(image, 0, 0)
+    drawBackground(image, x = 0, y = 0){
+        this.getContext().drawImage(image, x, y)
     }
 
     drawPlayer(x, y){
