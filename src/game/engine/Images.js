@@ -40,7 +40,6 @@ function cacheImages(spriteSheet, callback) {
   context.translate(80, 0)
   context.drawImage(spriteSheet, 80,0,20,20, 0,0,20,20)
   context.restore()
-
   // cache the horizontal wall
   context.save()
   context.translate(100,0)
