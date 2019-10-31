@@ -100,28 +100,32 @@ export function drawBulletOn(context, x, y) {
   context.drawImage(cache, 80,0,20,20, x, y, 20,20)
 }
 
+export function drawSkullOn(context, x, y) {
+  context.drawImage(cache, 80,20,20,20, x, y, 20,20)
+}
+
 export function drawHorizontalWallOn(context, x, y) {
-  context.drawImage(cache, 100,0,40,40, x, y, 20,20)
+  context.drawImage(cache, 100,0,40,40, x, y, 40,40)
 }
 
 export function drawVerticalWallOn(context, x, y) {
-  context.drawImage(cache, 140,0,40,40, x, y, 20,20)
+  context.drawImage(cache, 140,0,40,40, x, y, 40,40)
 }
 
 export function drawAngeled1WallOn(context, x, y) {
-  context.drawImage(cache, 180,0,40,40, x, y, 20,20)
+  context.drawImage(cache, 180,0,40,40, x, y, 40,40)
 }
 
 export function drawAngeled2WallOn(context, x, y) {
-  context.drawImage(cache, 220,0,40,40, x, y, 20,20)
+  context.drawImage(cache, 220,0,40,40, x, y, 40,40)
 }
 
 export function drawAngeled3WallOn(context, x, y) {
-  context.drawImage(cache, 260,0,40,40, x, y, 20,20)
+  context.drawImage(cache, 260,0,40,40, x, y, 40,40)
 }
 
 export function drawAngeled4WallOn(context, x, y) {
-  context.drawImage(cache, 300,0,40,40, x, y, 20,20)
+  context.drawImage(cache, 300,0,40,40, x, y, 40,40)
 }
 
 export function getCache(){

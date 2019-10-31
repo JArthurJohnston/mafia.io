@@ -1,10 +1,11 @@
 import { GameObject } from "./engine/GameObject";
 import { cacheTiledSprite } from "../GraphicsHelper";
+import { cacheLevel } from "./engine/TiledLevelBuilder";
 
 export class Level extends GameObject {
   
   start(){
-    this.cachedBackground = cacheTiledSprite(53, 27)
+    this.cachedBackground = cacheLevel()
   }
 
   render(graphics){

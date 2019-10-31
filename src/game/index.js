@@ -14,6 +14,6 @@ export function init(){
   player.addChild(new FieldOfVison())
   root.addChild(player)
   root.addChild(new FPSView())
-  root.addChild(new CacheView(getCache()))
+  // root.addChild(new CacheView(getCache()))
   return root
 }
