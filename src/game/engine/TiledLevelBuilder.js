@@ -17,7 +17,7 @@ import {
  * 5: _\
  * 6: /_
  */
-let tileFunctions = [
+export const tileFunctions = [
   drawStoneFloorOn,
   drawHorizontalWallOn,
   drawVerticalWallOn,

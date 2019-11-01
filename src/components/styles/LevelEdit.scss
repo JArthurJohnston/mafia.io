@@ -1,0 +1,16 @@
+.level-edit-container {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    .level-canvas {
+        width: 50em;
+        height: 50em;
+    }
+    .pallet {
+        position: relative;
+        width: 9em;
+        background-color: black;
+        height: 50em;
+    }
+}
