@@ -31,7 +31,7 @@ let tileFunctions = [
  * a 52 x 52 map
  * 50 x 50 is playable, with a a wall around the outer edge
  */
-let tiles = [
+export const DEFAULT_TILES = [
   [6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5],
   [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
   [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
@@ -90,17 +90,21 @@ const TILE_SIZE = 40
 export function cacheLevel() {
   let canvas = document.createElement('canvas')
   let context = canvas.getContext('2d', {alpha: false})
-  canvas.width = tiles[0].length * TILE_SIZE
-  canvas.height = tiles.length * TILE_SIZE
+  canvas.width = DEFAULT_TILES[0].length * TILE_SIZE
+  canvas.height = DEFAULT_TILES.length * TILE_SIZE
 
+  drawTilesOn(context, DEFAULT_TILES)
+  return canvas
+}
+
+export function drawTilesOn(context, tiles, size=TILE_SIZE){
   for (let y = 0; y < tiles.length; y++) {
     const row = tiles[y];
     for (let x = 0; x < row.length; x++) {
       const tileIndex = row[x];
-      drawStoneFloorOn(context, x * TILE_SIZE, y * TILE_SIZE)
+      drawStoneFloorOn(context, x * size, y * size)
       if(tileIndex > 0)
-        tileFunctions[tileIndex](context, x * TILE_SIZE, y * TILE_SIZE)
+        tileFunctions[tileIndex](context, x * size, y * size)
     }
   }
-  return canvas
 }
