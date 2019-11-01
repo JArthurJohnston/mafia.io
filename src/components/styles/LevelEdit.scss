@@ -13,4 +13,13 @@
         background-color: black;
         height: 5em;
     }
+    .pallet {
+        display: flex;
+        flex-direction: row;
+    }
+    .brush {
+        position: inherit;
+        width: 3em;
+        height: 3em;
+    }
 }

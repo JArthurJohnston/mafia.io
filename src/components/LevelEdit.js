@@ -12,23 +12,40 @@ export default class LevelEdit extends Component {
     constructor(){
         super()
         this.state = {
-            tiles: DEFAULT_TILES
+            tiles: DEFAULT_TILES,
+            images: [],
+            currentBrush: 1
         }
         this.handlePaint = this.handlePaint.bind(this);
+        this.updateBrush = this.updateBrush.bind(this);
     }
 
     componentDidMount(){
         const pallet = this.refs.palletCanvas
-        load(spritesheet).then((cachedSpriteSheet) => {
+        load(spritesheet).then(() => {
             this.renderTiles()
-            pallet.getContext("2d").drawImage(cachedSpriteSheet, 0, 0)
+
+            let index = 0
+            tileFunctions.forEach(fn => {
+                const newCanvas = document.createElement('canvas');
+                newCanvas.width=40
+                newCanvas.height=40
+                newCanvas.className='brush'
+                newCanvas.onclick = () => {this.updateBrush(index)}
+                fn(newCanvas.getContext('2d'), 0, 0)
+                this.refs.pallet.appendChild(newCanvas)
+                index++
+            })
         })
+    }
+
+    updateBrush(index){
+        this.setState({...this.state, currentBrush: index})
     }
 
     renderTiles(){
         const canvas = this.refs.levelCanvas;
         drawTilesOn(canvas.getContext("2d"), this.state.tiles)
-        console.log([canvas.offsetLeft, canvas.offsetTop])
     }
 
     componentDidUpdate(){
@@ -41,7 +58,7 @@ export default class LevelEdit extends Component {
         const xCoord = Math.floor([(pageX - offsetLeft) / tileWidth]);
         const yCoord = Math.floor([(pageY - offsetTop) / tileWidth]);
         let tiles = [...DEFAULT_TILES]
-        tiles[yCoord][xCoord] = 1
+        tiles[yCoord][xCoord] = this.state.currentBrush
         this.setState({tiles})
     }
 
@@ -49,7 +66,7 @@ export default class LevelEdit extends Component {
         let {} = this.props;
         return(
             <div className='level-edit-container'>
-                <canvas className='pallet-canvas' width={WIDTH/2} height={80} ref='palletCanvas'/>
+            <div ref='pallet' className='pallet'></div>
                 <canvas 
                     onClick={this.handlePaint}
                     className='level-canvas' 
@@ -59,4 +76,20 @@ export default class LevelEdit extends Component {
             </div>
         )
     }
+}
+
+function Pallet ({drawFunctions}) {
+    return (
+        <div>
+            {drawFunctions.map((fn) => {
+                return <canvas/>
+            })}
+        </div>
+    )
+}
+
+function Brush ({image}) {
+    return (
+        image && <img src={image} />
+    )
 }
