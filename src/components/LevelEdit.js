@@ -18,6 +18,7 @@ export default class LevelEdit extends Component {
         }
         this.handlePaint = this.handlePaint.bind(this);
         this.updateBrush = this.updateBrush.bind(this);
+        this.saveMap = this.saveMap.bind(this);
     }
 
     componentDidMount(){
@@ -60,6 +61,10 @@ export default class LevelEdit extends Component {
         this.setState({tiles})
     }
 
+    saveMap(){
+        console.log(this.state.tiles)
+    }
+
     render(){
         let {} = this.props;
         return(
@@ -71,6 +76,7 @@ export default class LevelEdit extends Component {
                     style={{position: 'relative'}} 
                     ref="levelCanvas" width={CANVAS_WIDTH} height={CANVAS_HEIGHT}
                 />
+                <button onClick={this.saveMap}>Save</button>
             </div>
         )
     }
