@@ -84,7 +84,7 @@ function cacheImages(spriteSheet, callback) {
   context.drawImage(spriteSheet, 0,20,20,20, 0,0,20,20)
   context.restore()
 
-  callback()
+  callback(cache)
 }
 
 export function drawPlayerOn(context, x, y) {
