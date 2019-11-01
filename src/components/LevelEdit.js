@@ -25,16 +25,14 @@ export default class LevelEdit extends Component {
         load(spritesheet).then(() => {
             this.renderTiles()
 
-            let index = 0
             tileFunctions.forEach(fn => {
                 const newCanvas = document.createElement('canvas');
                 newCanvas.width=40
                 newCanvas.height=40
                 newCanvas.className='brush'
-                newCanvas.onclick = () => {this.updateBrush(index)}
+                newCanvas.onclick = () => {this.updateBrush(tileFunctions.indexOf(fn))}
                 fn(newCanvas.getContext('2d'), 0, 0)
                 this.refs.pallet.appendChild(newCanvas)
-                index++
             })
         })
     }
