@@ -1,5 +1,4 @@
 import { GameObject } from "./engine/GameObject";
-import { cacheTiledSprite } from "../GraphicsHelper";
 import { cacheLevel } from "./engine/TiledLevelBuilder";
 import { keyBinding } from "../KeyBinding";
 
@@ -14,6 +13,8 @@ export class Level extends GameObject {
   start(){
     this.speed = 5
     this.cachedBackground = cacheLevel()
+    this.localX = -500
+    this.localY = -500
   }
 
   update(delta){
