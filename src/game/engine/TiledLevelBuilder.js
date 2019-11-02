@@ -8,7 +8,7 @@ import {
   drawStoneFloorOn
 } from "./Images";
 
-import defaultTiles from "../maps/default.json"
+import defaultTiles from "../maps/default2.json"
 
 /**
  * 0: floor
@@ -28,11 +28,6 @@ export const tileFunctions = [
   drawAngeled3WallOn,
   drawAngeled4WallOn,
 ]
-
-/**
- * a 52 x 52 map
- * 50 x 50 is playable, with a a wall around the outer edge
- */
 
 const TILE_SIZE = 40
 

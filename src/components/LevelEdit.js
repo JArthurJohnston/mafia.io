@@ -3,7 +3,7 @@ import { drawTilesOn, tileFunctions } from "../game/engine/TiledLevelBuilder";
 import { load } from "../game/engine/Images";
 import spritesheet from "../res/sprite-sheet.png"
 import './styles/LevelEdit.scss'
-import defaultTiles from "../game/maps/default.json"
+import defaultTiles from "../game/maps/default2.json"
 
 const WIDTH = window.innerWidth
 const CANVAS_WIDTH = 52*40
@@ -44,7 +44,7 @@ export default class LevelEdit extends Component {
 
     renderTiles(){
         const canvas = this.refs.levelCanvas;
-        drawTilesOn(canvas.getContext("2d"), this.state.tiles)
+        drawTilesOn(canvas.getContext("2d"), this.state.tiles, 0, 0)
     }
 
     componentDidUpdate(){
