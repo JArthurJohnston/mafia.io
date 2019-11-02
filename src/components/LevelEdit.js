@@ -1,8 +1,9 @@
 import React, {Component} from "react"
-import { DEFAULT_TILES, drawTilesOn, tileFunctions } from "../game/engine/TiledLevelBuilder";
+import { drawTilesOn, tileFunctions } from "../game/engine/TiledLevelBuilder";
 import { load } from "../game/engine/Images";
 import spritesheet from "../res/sprite-sheet.png"
 import './styles/LevelEdit.scss'
+import defaultTiles from "../game/maps/default.json"
 
 const WIDTH = window.innerWidth
 const CANVAS_WIDTH = 52*40
@@ -12,7 +13,7 @@ export default class LevelEdit extends Component {
     constructor(){
         super()
         this.state = {
-            tiles: DEFAULT_TILES,
+            tiles: defaultTiles,
             images: [],
             currentBrush: 1
         }
@@ -22,7 +23,6 @@ export default class LevelEdit extends Component {
     }
 
     componentDidMount(){
-        const pallet = this.refs.palletCanvas
         load(spritesheet).then(() => {
             this.renderTiles()
 
@@ -56,7 +56,7 @@ export default class LevelEdit extends Component {
         const tileWidth = offsetWidth / 52
         const xCoord = Math.floor([(pageX - offsetLeft) / tileWidth]);
         const yCoord = Math.floor([(pageY - offsetTop) / tileWidth]);
-        let tiles = [...DEFAULT_TILES]
+        let tiles = [...this.state.tiles]
         tiles[yCoord][xCoord] = this.state.currentBrush
         this.setState({tiles})
     }
@@ -66,7 +66,6 @@ export default class LevelEdit extends Component {
     }
 
     render(){
-        let {} = this.props;
         return(
             <div className='level-edit-container'>
             <div ref='pallet' className='pallet'></div>
@@ -82,18 +81,3 @@ export default class LevelEdit extends Component {
     }
 }
 
-function Pallet ({drawFunctions}) {
-    return (
-        <div>
-            {drawFunctions.map((fn) => {
-                return <canvas/>
-            })}
-        </div>
-    )
-}
-
-function Brush ({image}) {
-    return (
-        image && <img src={image} />
-    )
-}
