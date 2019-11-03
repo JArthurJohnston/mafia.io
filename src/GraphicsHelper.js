@@ -21,7 +21,7 @@ export class GraphicsHelper {
         return this.layers[layerIndex].getContext("2d", config)
     }
 
-    drawText(x, y, text, color, font = "30px Arial"){
+    drawText(x, y, text, color = "white", font = "30px Arial"){
         this.getContext().fillStyle = color;
         this.getContext().font = font;
         this.getContext().fillText(text, x, y);

@@ -13,22 +13,25 @@ export class Level extends GameObject {
   start(){
     this.speed = 5
     this.cachedBackground = cacheLevel()
-    this.localX = -state.player.x * state.tileSize
-    this.localY = -state.player.y * state.tileSize
+    this.localX = -state.player.x * state.map.tileSize
+    this.localY = -state.player.y * state.map.tileSize
+    console.log([state.map.width, state.map.height]);
+    
   }
 
   update(delta){
     let [xMove, yMove] = this.handleKeyboardInput(delta)
 
-    if(state.map.playerTile(this.offsetY + yMove, this.offsetX + xMove) == 0){
+    if(state.map.playerTile(this.offsetX, this.offsetY + yMove) == 0)
       this.localY += yMove
+    if(state.map.playerTile(this.offsetX + xMove, this.offsetY) == 0)
       this.localX += xMove
-    }
   }
 
   render(graphics){
     graphics.drawBackground(this.cachedBackground, this.localX, this.localY)
-    graphics.drawText(0 ,50, `Player: ${[Math.floor(-1* this.offsetX/52), Math.floor(-1* this.offsetY/52)]}`, "white")
+    // graphics.drawText(0 ,50, `Player: ${[Math.floor(-1* this.offsetX/40), Math.floor(-1* this.offsetY/40)]}`)
+    // graphics.drawText(0 ,80, `Tile: ${state.map.playerTile(this.offsetX, this.offsetY)}`)
   }
 
   handleKeyboardInput(delta){

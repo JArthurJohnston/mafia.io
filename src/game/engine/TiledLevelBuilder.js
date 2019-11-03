@@ -57,9 +57,19 @@ export function drawTilesOn(context, tiles, w, h, size=TILE_SIZE){
     const row = tiles[y];
     for (let x = 0; x < row.length; x++) {
       const tileIndex = row[x];
-      drawStoneFloorOn(context, x * size + w/2, y * size + h/2)
+      const xPosition = x * size + w / 2;
+      const yPosition = y * size + h / 2;
+      drawStoneFloorOn(context, xPosition, yPosition)
       if(tileIndex > 0)
-        tileFunctions[tileIndex](context, x * size + w/2, y * size + h/2)
+        tileFunctions[tileIndex](context, xPosition, yPosition)
+      // drawText(context, xPosition,yPosition, `(${x},${y})` )
+      // drawText(context, xPosition + 10,yPosition + 20, `${tiles[y][x]}` )
     }
   }
+}
+
+function drawText(context, x, y, text, color = "white", font = "10px Arial"){
+  context.fillStyle = color;
+  context.font = font;
+  context.fillText(text, x, y);
 }

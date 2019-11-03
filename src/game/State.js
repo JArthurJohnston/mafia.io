@@ -4,7 +4,6 @@ class GameState {
 
   constructor(){
     this.map = new TileSet()
-    this.tileSize = 40
     this.player = {
       x: 20,
       y: 22
@@ -31,8 +30,8 @@ class TileSet {
   }
 
   playerTile(xOffset, yOffset){
-    const xIndex = Math.floor(-yOffset / this.height)
-    const yIndex = Math.floor(-xOffset / this.width)
+    const xIndex = Math.floor(-yOffset / this.tileSize)
+    const yIndex = Math.floor(-xOffset / this.tileSize)
     // console.log([xIndex, yIndex])
     return this.tiles[xIndex][yIndex]
   }
