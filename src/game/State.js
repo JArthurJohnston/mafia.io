@@ -9,6 +9,12 @@ class GameState {
       y: 22
     }
   }
+
+  updatePlayerPosition(xOffset, yOffset){
+    let [x, y] = this.map.playerPosition(xOffset, yOffset)
+    this.player.x = x
+    this.player.y = y
+  }
 }
 
 /**
@@ -30,10 +36,12 @@ class TileSet {
   }
 
   playerTile(xOffset, yOffset){
-    const xIndex = Math.floor(-yOffset / this.tileSize)
-    const yIndex = Math.floor(-xOffset / this.tileSize)
-    // console.log([xIndex, yIndex])
-    return this.tiles[xIndex][yIndex]
+    const [x, y] = this.playerPosition(xOffset, yOffset)
+    return this.tiles[y][x]
+  }
+
+  playerPosition(xOffset, yOffset){
+    return[ Math.floor(-xOffset / this.tileSize), Math.floor(-yOffset / this.tileSize)]
   }
 }
 

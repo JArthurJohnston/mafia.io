@@ -15,8 +15,6 @@ export class Level extends GameObject {
     this.cachedBackground = cacheLevel()
     this.localX = -state.player.x * state.map.tileSize
     this.localY = -state.player.y * state.map.tileSize
-    console.log([state.map.width, state.map.height]);
-    
   }
 
   update(delta){
@@ -26,6 +24,7 @@ export class Level extends GameObject {
       this.localY += yMove
     if(state.map.playerTile(this.offsetX + xMove, this.offsetY) == 0)
       this.localX += xMove
+    state.updatePlayerPosition(this.localX, this.localY)
   }
 
   render(graphics){
