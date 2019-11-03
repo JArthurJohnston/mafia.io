@@ -1,42 +1,50 @@
 import { GameObject } from "./engine/GameObject";
 import { cacheLevel } from "./engine/TiledLevelBuilder";
 import { keyBinding } from "../KeyBinding";
+import { state } from './State'
 
 const wKey = keyBinding("w")
 const aKey = keyBinding("a")
 const sKey = keyBinding("s")
 const dKey = keyBinding("d")
 
-
 export class Level extends GameObject {
   
   start(){
     this.speed = 5
     this.cachedBackground = cacheLevel()
-    this.localX = -500
-    this.localY = -500
+    this.localX = -state.player.x * state.tileSize
+    this.localY = -state.player.y * state.tileSize
   }
 
   update(delta){
-    this.handleKeyboardInput(delta)
+    let [xMove, yMove] = this.handleKeyboardInput(delta)
+
+    if(state.tiles[Math.floor(-1* (this.offsetY + yMove)/52)][Math.floor(-1* (this.offsetX + xMove)/52)] == 0){
+      this.localY += yMove
+      this.localX += xMove
+    }
   }
 
   render(graphics){
     graphics.drawBackground(this.cachedBackground, this.localX, this.localY)
+    graphics.drawText(0 ,50, `Player: ${[Math.floor(-1* this.offsetX/52), Math.floor(-1* this.offsetY/52)]}`, "white")
   }
 
   handleKeyboardInput(delta){
+    let xMovement = 0, yMovement = 0
     if(wKey.isDown){
-        this.localY += this.speed * delta
+        yMovement += this.speed * delta
     }
     if(sKey.isDown){
-        this.localY -= this.speed * delta
+        yMovement -= this.speed * delta
     }
     if(aKey.isDown){
-        this.localX += this.speed * delta
+        xMovement += this.speed * delta
     }
     if(dKey.isDown){
-        this.localX -= this.speed * delta
+        xMovement -= this.speed * delta
     }
+    return [xMovement, yMovement]
   }
 }

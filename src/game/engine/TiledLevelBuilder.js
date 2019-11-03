@@ -42,7 +42,6 @@ export function cacheLevel() {
   canvas.width = mapWidth + screenWidth
   canvas.height = mapHeight + screenHeight
 
-
   context.fillStyle = "black";
   context.beginPath();
   context.rect(0, 0, canvas.width, canvas.height)
