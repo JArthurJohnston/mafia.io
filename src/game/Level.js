@@ -20,7 +20,7 @@ export class Level extends GameObject {
   update(delta){
     let [xMove, yMove] = this.handleKeyboardInput(delta)
 
-    if(state.tiles[Math.floor(-1* (this.offsetY + yMove)/52)][Math.floor(-1* (this.offsetX + xMove)/52)] == 0){
+    if(state.map.playerTile(this.offsetY + yMove, this.offsetX + xMove) == 0){
       this.localY += yMove
       this.localX += xMove
     }
