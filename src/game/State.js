@@ -6,7 +6,8 @@ class GameState {
     this.map = new TileSet()
     this.player = {
       x: 20,
-      y: 22
+      y: 22,
+      direction: 0
     }
   }
 

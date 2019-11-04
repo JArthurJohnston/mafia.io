@@ -6,19 +6,22 @@ export function radiansToDegrees(radians){
   return radians * 180 / Math.PI
 }
 
-export function rotateAround(centerX, centerY, x, y, angle) {
-  return rotate_point(x, y, centerX, centerY, angle)
+export function rotatePoint(centerX, centerY, x, y, angle) {
+  const s = Math.sin(angle);
+  const c = Math.cos(angle);
+
+  // translate point back to origin:
+  x -= centerX;
+  y -= centerY;
+
+  const xnew =  x * c + -y * s;
+  const ynew =  x * s + y * c;
+
+  // translate point back:
+  return [xnew + centerX, ynew + centerY]
 }
 
-function rotate_point(pointX, pointY, originX, originY, angle) {
-  angle = degreesToRadians(angle);
-  let cosTheta = Math.cos(angle)
-  let sinTheta = Math.sin(angle)
-  return {
-      x: cosTheta * (pointX-originX) - sinTheta * (pointY-originY) + originX,
-      y: sinTheta * (pointX-originX) + cosTheta * (pointY-originY) + originY
-  };
-}
+
 /**
  * Returns the angle, in radians, between the line made by the 4 coordinate parameters and 
  * a vertical line pointing upwards starting at the first coordinates. This angle will be within the range 0 & +-180

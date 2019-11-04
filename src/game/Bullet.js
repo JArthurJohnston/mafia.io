@@ -1,5 +1,5 @@
 import { GameObject } from "./engine/GameObject";
-import { angleBetween, degreesToRadians } from "./engine/math/PointMath";
+import { angleBetween, degreesToRadians, rotatePoint } from "./engine/math/PointMath";
 const oneEighty = degreesToRadians(180)
 
 export class Bullet extends GameObject {
@@ -23,8 +23,12 @@ export class Bullet extends GameObject {
     update(delta){
         this.distance += Math.floor(this.speed * delta)
         if((this.distance - this.localY) > this.maxDistance) {
-            this.parent.removeChild(this)
+            this.destroy()
         }
+    }
+    
+    destroy(){
+        this.parent.removeChild(this)
     }
 
     render(graphics){
@@ -34,6 +38,12 @@ export class Bullet extends GameObject {
         graphics.drawBullet(0, this.distance)
         graphics.drawBullet(0, this.distance + 10)
         graphics.drawBullet(0, this.distance + 17)
+        graphics.restore()
+
+        graphics.save()
+        graphics.translate(this.offsetX, this.offsetY)
+        let [x, y] = rotatePoint(0, 0, 0, this.distance, this.angle)
+        graphics.drawRect(x, y, 5, 5, "red")
         graphics.restore()
     }
 }
