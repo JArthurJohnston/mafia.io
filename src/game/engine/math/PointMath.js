@@ -21,7 +21,6 @@ export function rotatePoint(centerX, centerY, x, y, angle) {
   return [xnew + centerX, ynew + centerY]
 }
 
-
 /**
  * Returns the angle, in radians, between the line made by the 4 coordinate parameters and 
  * a vertical line pointing upwards starting at the first coordinates. This angle will be within the range 0 & +-180

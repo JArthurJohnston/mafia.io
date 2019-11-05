@@ -1,4 +1,5 @@
 import mapTiles from "./maps/default2.json"
+import { GameScreen } from "../GraphicsHelper.js"
 
 class GameState {
 
@@ -42,7 +43,15 @@ class TileSet {
   }
 
   playerPosition(xOffset, yOffset){
-    return[ Math.floor(-xOffset / this.tileSize), Math.floor(-yOffset / this.tileSize)]
+    return [Math.floor(-xOffset / this.tileSize), Math.floor(-yOffset / this.tileSize)]
+  }
+
+  tileFromScreenSpace(x, y){
+    let xDiff = Math.floor((GameScreen.center.x - x) / this.tileSize)
+    let yDiff = Math.floor((GameScreen.center.y - y) / this.tileSize)
+
+    // return [state.player.x - xDiff, state.player.y - yDiff]
+    return this.tiles[state.player.y - yDiff][state.player.x - xDiff]
   }
 }
 

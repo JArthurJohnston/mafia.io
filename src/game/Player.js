@@ -1,10 +1,7 @@
 import { GameObject } from "./engine/GameObject";
-import { keyBinding } from "../KeyBinding";
 import MouseInput from "./engine/input/MouseHandler"
 import { Bullet } from "./Bullet";
-
-const HEIGHT = window.innerHeight
-const WIDTH = window.innerWidth
+import { GameScreen } from "../GraphicsHelper";
 
 export class Player extends GameObject {
 
@@ -14,18 +11,14 @@ export class Player extends GameObject {
   }
 
   start(){
-    this.localX = WIDTH / 2
-    this.localY = HEIGHT / 2
+    this.localX = GameScreen.center.x
+    this.localY = GameScreen.center.y
     this.radius = 40
     MouseInput.addClickHandler(this.handleMouseClick)
   }
 
   render(graphics){
     graphics.drawPlayer(Math.floor(this.offsetX - 20), Math.floor(this.offsetY - 20))
-  }
-
-  update(delta){
-    // this.handleKeyboardInput(delta)
   }
 
   handleMouseClick(x, y){

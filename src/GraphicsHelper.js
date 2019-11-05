@@ -1,6 +1,14 @@
-import { drawStoneFloorOn, drawPlayerOn, drawBulletOn, drawVerticalWallOn, drawHorizontalWallOn } from "./game/engine/Images";
+import { drawStoneFloorOn, drawPlayerOn, drawBulletOn } from "./game/engine/Images";
 
 const ONE_RADIAN = 2 * Math.PI;
+const HEIGHT = window.innerHeight
+const WIDTH = window.innerWidth
+
+export const GameScreen = {
+    height: HEIGHT,
+    width: WIDTH,
+    center: {x: WIDTH/2, y:HEIGHT/2},
+}
 
 export class GraphicsHelper {
 
