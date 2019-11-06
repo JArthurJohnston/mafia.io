@@ -1,6 +1,7 @@
 import { GameObject } from "./engine/GameObject";
 import { angleBetween, degreesToRadians, rotatePoint } from "./engine/math/PointMath";
 import {state} from './State'
+import { Explosion } from "./Explosion";
 
 const oneEighty = degreesToRadians(180)
 
@@ -48,12 +49,13 @@ export class Bullet extends GameObject {
             this.destroy()
             return
         }
+        
         for (let i = this.points.length - 1; i >= 0; i--) {
             const [x,y] = this.points[i];
             if(state.map.tileFromScreenSpace(x, y) !== 0){
+                this.parent.addChild(new Explosion(x, y))
                 this.destroy()
-            }
-            
+            }   
         }
     }
 
