@@ -1,4 +1,4 @@
-import { buildLine, distanceBetween, slope, angle, findPoint } from "../Line"
+import { buildLine, distanceBetween, slope, angle, findPoint, unitLengthVector } from "../Line"
 import { radiansToDegrees } from "../../math/PointMath"
 
 describe('Line', () => {
@@ -118,4 +118,15 @@ describe('Line', () => {
       expect(result.y).toEqual(10)
     })
   })
+
+  describe('unitLengthVector', () => {
+    // points 1,1 and 5,5
+    let unit = unitLengthVector(1)
+
+    let distance = distanceBetween(1,1, 5,5)
+
+    // expect(unit).toEqual(1.4142135623730951)
+
+    expect(distance * unit).toEqual(4)
+  })  
 })

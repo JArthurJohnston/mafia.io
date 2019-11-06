@@ -50,8 +50,12 @@ class TileSet {
     let xDiff = Math.floor((GameScreen.center.x - x) / this.tileSize)
     let yDiff = Math.floor((GameScreen.center.y - y) / this.tileSize)
 
-    // return [state.player.x - xDiff, state.player.y - yDiff]
-    return this.tiles[state.player.y - yDiff][state.player.x - xDiff]
+    const yIndex = state.player.y - yDiff
+    const xIndex = state.player.x - xDiff
+    if(yIndex < 0 || yIndex > this.height || xIndex < 0 ||xIndex > this.width){
+      return -1
+    }
+    return this.tiles[yIndex][xIndex]
   }
 }
 

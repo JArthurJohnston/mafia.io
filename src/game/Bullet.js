@@ -64,6 +64,7 @@ export class Bullet extends GameObject {
     render(graphics){
         for (let i = 0; i < this.points.length; i++) {
             const [x, y] = this.points[i];
+            //I should probably predraw the sprite with 3 bullets
             
             graphics.save()
             graphics.translate(x, y)
