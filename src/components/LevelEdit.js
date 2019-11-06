@@ -4,8 +4,8 @@ import { load } from "../game/engine/Images";
 import spritesheet from "../res/sprite-sheet.png"
 import './styles/LevelEdit.scss'
 import defaultTiles from "../game/maps/default2.json"
+import {state} from "../game/State"
 
-const WIDTH = window.innerWidth
 const CANVAS_WIDTH = 52*40
 const CANVAS_HEIGHT = 52*40
 
@@ -28,8 +28,8 @@ export default class LevelEdit extends Component {
 
             tileFunctions.forEach(fn => {
                 const newCanvas = document.createElement('canvas');
-                newCanvas.width=40
-                newCanvas.height=40
+                newCanvas.width=state.map.tileSize
+                newCanvas.height=state.map.tilesize
                 newCanvas.className='brush'
                 newCanvas.onclick = () => {this.updateBrush(tileFunctions.indexOf(fn))}
                 fn(newCanvas.getContext('2d'), 0, 0)

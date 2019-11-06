@@ -3,7 +3,6 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
   } from "react-router-dom";
 import { Canvas } from "./Canvas";
 import LevelEdit from "./LevelEdit";

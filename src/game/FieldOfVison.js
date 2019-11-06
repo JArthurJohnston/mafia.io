@@ -1,5 +1,5 @@
 import { GameObject } from "./engine/GameObject";
-import { angleBetween, degreesToRadians, radiansToDegrees } from "./engine/math/PointMath";
+import { angleBetween, degreesToRadians } from "./engine/math/PointMath";
 import input from './engine/input/MouseHandler'
 import {state} from "./State"
 
@@ -37,6 +37,5 @@ export class FieldOfVison extends GameObject {
     graphics.drawRect(-graphics.windowWidth, -(graphics.windowWidth * 1.5)/2, graphics.windowWidth, graphics.windowWidth * 1.5, "black")
     graphics.drawRect(0, -graphics.windowWidth, graphics.windowWidth, graphics.windowWidth, "black")
     graphics.restore()
-    graphics.drawText(0 ,50, `Direction: ${radiansToDegrees(this.angle)}`)
   }
 }

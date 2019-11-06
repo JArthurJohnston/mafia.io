@@ -20,9 +20,9 @@ export class Level extends GameObject {
   update(delta){
     let [xMove, yMove] = this.handleKeyboardInput(delta)
 
-    if(state.map.playerTile(this.offsetX, this.offsetY + yMove) == 0)
+    if(state.map.playerTile(this.offsetX, this.offsetY + yMove) === 0)
       this.localY += yMove
-    if(state.map.playerTile(this.offsetX + xMove, this.offsetY) == 0)
+    if(state.map.playerTile(this.offsetX + xMove, this.offsetY) === 0)
       this.localX += xMove
     state.updatePlayerPosition(this.localX, this.localY)
   }
