@@ -2,6 +2,7 @@ import { GameObject } from "./engine/GameObject";
 import { angleBetween, degreesToRadians, rotatePoint } from "./engine/math/PointMath";
 import {state} from './State'
 import { Explosion } from "./Explosion";
+import { midpointBetween } from "./engine/shapes/Line";
 
 const oneEighty = degreesToRadians(180)
 
@@ -12,6 +13,8 @@ export class Bullet extends GameObject {
         //technically I should be translating world coordinates into local coords, but since this objects parent offset will be 0,0 it wont matter
         this.localX = startX 
         this.localY = startY
+        this.previousX = startX
+        this.previousY = startY
         this.startX = startX
         this.startY = startY
         this.distance = 0
@@ -27,6 +30,9 @@ export class Bullet extends GameObject {
     update(delta){
         this.distance += this.speed * delta
 
+        this.previousX = this.localX
+        this.previousY = this.localY
+
         let [x, y] =   rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance, this.angle)
 
         this.localX = x
@@ -36,7 +42,10 @@ export class Bullet extends GameObject {
             this.destroy()
             return
         }
-        if(state.map.tileFromScreenSpace(x, y) !== 0){
+
+        let [midX, midY] = midpointBetween(this.previousX, this.previousY, this.localX, this.localY)
+        
+        if(state.map.tileFromScreenSpace(midX, midY) !== 0 || state.map.tileFromScreenSpace(x, y) !== 0){
             this.parent.addChild(new Explosion(x, y))
             this.destroy()
         }   

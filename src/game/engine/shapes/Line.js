@@ -70,6 +70,10 @@ export function findPoint(startX, startY, rise, run, distance){
   return [x, y]
 }
 
+export function midpointBetween(x1, y1, x2, y2){
+  return [(x1 + x2) / 2, (y1 + y2) / 2]
+}
+
 /**
  * returns the angle, in radians, between 2 lines given the start and end coordinates of each line
  * 

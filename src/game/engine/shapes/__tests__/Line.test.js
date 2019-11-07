@@ -1,4 +1,4 @@
-import { buildLine, distanceBetween, slope, angle, findPoint, unitLengthVector } from "../Line"
+import { buildLine, distanceBetween, slope, angle, findPoint, unitLengthVector, midpointBetween } from "../Line"
 import { radiansToDegrees } from "../../math/PointMath"
 
 describe('Line', () => {
@@ -129,4 +129,16 @@ describe('Line', () => {
 
     expect(distance * unit).toEqual(4)
   })  
+
+  describe('midpointBetween', () => {
+    it('should return the midpoint between two points', () => {
+      let midpoint = midpointBetween(0, 0, 6, 6)
+
+      expect(midpoint).toEqual([3, 3])
+
+      midpoint = midpointBetween(2, 2, 7, 7)
+
+      expect(midpoint).toEqual([4.5, 4.5])
+    })
+  })
 })
