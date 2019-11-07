@@ -16,11 +16,6 @@ export class Bullet extends GameObject {
         this.startY = startY
         this.distance = 0
         this.angle = angleBetween(startX, startY, targetX, targetY) - oneEighty
-        this.points = [
-            [0,0],
-            [0,0],
-            [0,0],
-        ]
     }
 
     start(){
@@ -32,31 +27,19 @@ export class Bullet extends GameObject {
     update(delta){
         this.distance += this.speed * delta
 
-        // let [x, y] =   rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance, this.angle)
-        // let [x2, y2] = rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance + 5, this.angle)
-        // let [x3, y3] = rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance + 5, this.angle)
+        let [x, y] =   rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance, this.angle)
 
-        // this.localX = x
-        // this.localY = y
-
-        this.points = [
-            rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance, this.angle),
-            rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance - 5, this.angle),
-            rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance - 10, this.angle),
-        ]
+        this.localX = x
+        this.localY = y
 
         if((this.distance) > this.maxDistance) {
             this.destroy()
             return
         }
-        
-        for (let i = this.points.length - 1; i >= 0; i--) {
-            const [x,y] = this.points[i];
-            if(state.map.tileFromScreenSpace(x, y) !== 0){
-                this.parent.addChild(new Explosion(x, y))
-                this.destroy()
-            }   
-        }
+        if(state.map.tileFromScreenSpace(x, y) !== 0){
+            this.parent.addChild(new Explosion(x, y))
+            this.destroy()
+        }   
     }
 
     destroy(){
@@ -64,15 +47,10 @@ export class Bullet extends GameObject {
     }
 
     render(graphics){
-        for (let i = 0; i < this.points.length; i++) {
-            const [x, y] = this.points[i];
-            //I should probably predraw the sprite with 3 bullets
-            
-            graphics.save()
-            graphics.translate(x, y)
-            graphics.rotate(this.angle + oneEighty)
-            graphics.drawBullet(0, 0)
-            graphics.restore()
-        }
+        graphics.save()
+        graphics.translate(this.offsetX, this.offsetY)
+        graphics.rotate(this.angle + oneEighty)
+        graphics.drawBullet(0, 0)
+        graphics.restore()
     }
 }

@@ -6,27 +6,21 @@ export class Explosion extends GameObject {
         super()
         this.localX = x
         this.localY = y
-    }
-    
-    start(){
-        this.frameCount = 6
         this.frameIndex = 0
+        this.frameCount = 25
     }
 
     update(delta){
         if(this.frameIndex >= this.frameCount){
             this.parent.removeChild(this)
         }
+        this.frameIndex++
     }
 
     render(graphics){
-        if(this.frameIndex % 2 === 0){
-            this.frameCount++
-            graphics.save()
-            graphics.translate(this.offsetX, this.offsetY)
-            graphics.drawRect(0, 0, 40, 40)
-            graphics.restore()
-        }
-        this.frameIndex++
+        graphics.save()
+        graphics.translate(this.offsetX, this.offsetY)
+        graphics.drawRect(0, 0, 40, 40, "red")
+        graphics.restore()
     }
 }
