@@ -22,8 +22,6 @@ export class Player extends GameObject {
   }
 
   handleMouseClick(x, y){
-    let bullet = new Bullet(x, y, this.offsetX, this.offsetY) 
-    bullet.start()
-    this.parent.addChild(bullet)
+    this.parent.spawn(new Bullet(x, y, this.offsetX, this.offsetY))
   }
 }

@@ -44,15 +44,11 @@ export class Bullet extends GameObject {
         }
 
         let [midX, midY] = midpointBetween(this.previousX, this.previousY, this.localX, this.localY)
-        
+
         if(state.map.tileFromScreenSpace(midX, midY) !== 0 || state.map.tileFromScreenSpace(x, y) !== 0){
-            this.parent.addChild(new Explosion(x, y))
+            this.parent.spawn(new Explosion(x, y))
             this.destroy()
         }   
-    }
-
-    destroy(){
-        this.parent.removeChild(this)
     }
 
     render(graphics){

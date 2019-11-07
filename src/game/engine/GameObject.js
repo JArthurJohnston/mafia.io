@@ -5,15 +5,6 @@ const BASE_PARENT = {
   offsetY: 0
 }
 
- /**
-   * static method for making new objects at runtime
-   * instantiate(clazz, parent){
-   *  let obj = new clazz() //this may be difficult
-   *  parent.addChild(obj)
-   *  obj.start() //not here yet
-   * }
-   */
-
 export class GameObject {
 
   constructor(){
@@ -21,6 +12,7 @@ export class GameObject {
     this.localY = 0
     this.parent = BASE_PARENT;
     this.children = []
+    //I dont think I need these vv
     this.start = this.start.bind(this);
     this.update = this.update.bind(this);
     this.render = this.render.bind(this);
@@ -74,6 +66,22 @@ export class GameObject {
 
   removeChild(gameObject){
     _.remove(this.children, go => go === gameObject)
+  }
+
+  spawn(gameObject){
+    this.addChild(gameObject)
+    gameObject.start()
+  }
+
+  /**
+   * All this does is remove the game object from the game heirarchy, stopping it from being
+   * updated/rendered every frame.
+   * This does not guarantee the object is ready for garbage collection.
+   * Make sure to clean up any refernces in your object before destroying to 
+   * avoid memory leaks.
+   */
+  destroy(){
+    this.parent.removeChild(this)
   }
 
   start(){
