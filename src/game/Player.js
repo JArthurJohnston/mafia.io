@@ -5,9 +5,10 @@ import { GameScreen } from "../GraphicsHelper";
 
 export class Player extends GameObject {
 
-  constructor(){
+  constructor(level){
     super()
     this.handleMouseClick = this.handleMouseClick.bind(this);
+    this.level = level
   }
 
   start(){

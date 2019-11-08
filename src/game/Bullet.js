@@ -29,6 +29,10 @@ export class Bullet extends GameObject {
 
     update(delta){
         this.distance += this.speed * delta
+        if((this.distance) > this.maxDistance) {
+            this.destroy()
+            return
+        }
 
         this.previousX = this.localX
         this.previousY = this.localY
@@ -37,11 +41,6 @@ export class Bullet extends GameObject {
 
         this.localX = x
         this.localY = y
-
-        if((this.distance) > this.maxDistance) {
-            this.destroy()
-            return
-        }
 
         let [midX, midY] = midpointBetween(this.previousX, this.previousY, this.localX, this.localY)
 
