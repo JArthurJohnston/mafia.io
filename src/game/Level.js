@@ -41,7 +41,7 @@ export class Level extends GameObject {
     let bulletXPos = -(this.offsetX - GameScreen.center.x)
     let bulletYPos = -(this.offsetY - GameScreen.center.y)
     let angle = angleBetween(GameScreen.center.x, GameScreen.center.y , x, y)
-    this.spawn(new Bullet(bulletXPos, bulletYPos, angle))
+    this.spawn(new Bullet(bulletXPos, bulletYPos, angle, x, y))
   }
 
   render(graphics){

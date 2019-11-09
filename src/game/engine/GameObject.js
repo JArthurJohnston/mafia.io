@@ -25,6 +25,7 @@ export class GameObject {
 
  
   /**
+   * This should return the x value of where the object is on the screen
    * @returns {number} the total x offset of this object and all its parent objects (IE its world position)
    */
   get offsetX() {
@@ -32,6 +33,7 @@ export class GameObject {
   }
 
   /**
+   * This should return the y value of where the object is on the screen
    * @returns {number} the total y offset of this object and all its parent objects (IE its world position)
    */
   get offsetY() {

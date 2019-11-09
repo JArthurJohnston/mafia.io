@@ -39,7 +39,7 @@ export function bresenhamLine(x0, y0, x1, y1){
     let error = 0, y = y0
 
     for (let x = x0; x <= x1; x++) {
-        isSteep ? points.push([y, x]) : points.push([x, y])
+        isSteep ? points.push([Math.floor(y), Math.floor(x)]) : points.push([Math.floor(x), Math.floor(y)])
         error += deltaY
         if(error * 2 >= deltaX){
             y += yStep
@@ -50,13 +50,30 @@ export function bresenhamLine(x0, y0, x1, y1){
     return points
 }
 
+const STEP = 5
+
 export function raycast(startX, startY, endX, endY){
     let points = bresenhamLine(startX, startY, endX, endY)
     if(points[0][0] === startX){
-        for (let i = 0; i < points.length; i++) {
+        for (let i = 0; i < points.length; i += STEP) {
             const [x, y] = points[i];
             if(state.map.tileFromScreenSpace(x, y) !== 0)
                 return [x, y]
         }
+    } else {
+        for (let i = points.length - 1; i >= 0; i -= STEP) {
+            const [x, y] = points[i];
+            if(state.map.tileFromScreenSpace(x, y) !== 0)
+                return [x, y]
+        }
+    }
+}
+
+export function simpleRaycast(startX, startY, endX, endY){
+    let points = bresenhamLine(startX, startY, endX, endY)
+    for (let i = 0; i < points.length; i += STEP) {
+        const [x, y] = points[i];
+        if(state.map.tileFromScreenSpace(x, y) !== 0)
+            return [x, y]
     }
 }
