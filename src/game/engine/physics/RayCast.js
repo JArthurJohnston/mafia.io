@@ -1,3 +1,4 @@
+import { state } from "../../State"
 
 /**
  * returns all the points on a line between (x0, y0) and (x1, y1)
@@ -47,4 +48,15 @@ export function bresenhamLine(x0, y0, x1, y1){
     }
 
     return points
+}
+
+export function raycast(startX, startY, endX, endY){
+    let points = bresenhamLine(startX, startY, endX, endY)
+    if(points[0][0] === startX){
+        for (let i = 0; i < points.length; i++) {
+            const [x, y] = points[i];
+            if(state.map.tileFromScreenSpace(x, y) !== 0)
+                return [x, y]
+        }
+    }
 }

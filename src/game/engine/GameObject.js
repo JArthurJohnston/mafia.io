@@ -53,10 +53,10 @@ export class GameObject {
   }
 
   renderLoop(graphics, delta){
+    this.render(graphics, delta)
     this.children.forEach(child => {
       child.renderLoop(graphics, delta)
     });
-    this.render(graphics, delta)
   }
 
   addChild(gameObject){

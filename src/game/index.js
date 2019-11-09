@@ -9,7 +9,7 @@ export function init(){
   const root = new GameObject()
   root.addChild(new Level())
   const player = new Player()
-  player.addChild(new FieldOfVison())
+  root.addChild(new FieldOfVison())
   root.addChild(player)
   root.addChild(new FPSView())
   // root.addChild(new CacheView(getCache()))

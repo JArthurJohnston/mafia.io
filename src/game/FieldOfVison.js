@@ -1,7 +1,8 @@
 import { GameObject } from "./engine/GameObject";
 import { angleBetween, degreesToRadians } from "./engine/math/PointMath";
-import input from './engine/input/MouseHandler'
+import input from './engine/input/MouseInput'
 import {state} from "./State"
+import { GameScreen } from "../GraphicsHelper";
 
 const VIEW_OFFSET = degreesToRadians(140)
 
@@ -13,6 +14,8 @@ export class FieldOfVison extends GameObject {
   }
 
   start(){
+    this.localX = GameScreen.center.x
+    this.localY = GameScreen.center.y
     this.lookX = 0
     this.lookY = 0
     this.angle = 0

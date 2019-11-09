@@ -1,51 +1,40 @@
 import { GameObject } from "./engine/GameObject";
-import { angleBetween, degreesToRadians, rotatePoint } from "./engine/math/PointMath";
+import { degreesToRadians, rotatePoint } from "./engine/math/PointMath";
 import {state} from './State'
 import { Explosion } from "./Explosion";
-import { midpointBetween } from "./engine/shapes/Line";
 
 const oneEighty = degreesToRadians(180)
 
 export class Bullet extends GameObject {
 
-    constructor(targetX, targetY, startX, startY){
+    constructor(x, y, angle){
         super()
-        //technically I should be translating world coordinates into local coords, but since this objects parent offset will be 0,0 it wont matter
-        this.localX = startX 
-        this.localY = startY
-        this.previousX = startX
-        this.previousY = startY
-        this.startX = startX
-        this.startY = startY
+        this.localX = x 
+        this.localY = y
         this.distance = 0
-        this.angle = angleBetween(startX, startY, targetX, targetY) - oneEighty
+        this.angle = angle - oneEighty
     }
 
     start(){
         this.maxDistance = 1000
         this.size = 6
-        this.speed = 20
+        this.speed = 5
     }
 
     update(delta){
         this.distance += this.speed * delta
 
-        this.previousX = this.localX
-        this.previousY = this.localY
+        let [x, y] =  rotatePoint(this.localX, this.localY, this.localX, this.localY + this.distance, this.angle)
 
-        let [x, y] =   rotatePoint(this.startX, this.startY, this.startX, this.startY + this.distance, this.angle)
-
-        this.localX = x
-        this.localY = y
+        this.localX = Math.floor(x)
+        this.localY = Math.floor(y)
 
         if((this.distance) > this.maxDistance) {
             this.destroy()
             return
         }
 
-        let [midX, midY] = midpointBetween(this.previousX, this.previousY, this.localX, this.localY)
-
-        if(state.map.tileFromScreenSpace(midX, midY) !== 0 || state.map.tileFromScreenSpace(x, y) !== 0){
+        if(state.map.tileFromScreenSpace(this.offsetX, this.offsetY) !== 0){
             this.parent.spawn(new Explosion(x, y))
             this.destroy()
         }   

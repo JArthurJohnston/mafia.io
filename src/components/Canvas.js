@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { GraphicsHelper } from '../GraphicsHelper'
 import { init } from '../game'
-import MouseInput from '../game/engine/input/MouseHandler'
+import MouseInput from '../game/engine/input/MouseInput'
 import { load } from '../game/engine/Images'
 import spritesheet from "../res/sprite-sheet.png"
 
