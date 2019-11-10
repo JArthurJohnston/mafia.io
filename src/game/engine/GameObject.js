@@ -2,7 +2,8 @@ import _ from "lodash"
 
 const BASE_PARENT = {
   offsetX: 0,
-  offsetY: 0
+  offsetY: 0,
+  name: 'BASE_PARENT'
 }
 
 export class GameObject {
@@ -23,6 +24,9 @@ export class GameObject {
     this.removeChild = this.removeChild.bind(this);
   }
 
+  get name(){
+    return 'GameObject'
+  }
  
   /**
    * This should return the x value of where the object is on the screen

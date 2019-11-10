@@ -19,10 +19,14 @@ export class Bullet extends GameObject {
         this.target = {x: targetX, y: targetY}
     }
 
+    get name(){
+        return 'Bullet'
+    }
+
     start(){
         this.maxDistance = 1000
         this.size = 6
-        this.speed = 5
+        this.speed = 20
         // let result = raycast(this.offsetX, this.offsetY, this.target.x, this.target.y)
         // if(result){
         //     alert(result)
@@ -31,8 +35,13 @@ export class Bullet extends GameObject {
 
     update(delta){
         this.distance += this.speed * delta
+        if((this.distance) > this.maxDistance) {
+            this.destroy()
+            this.parent.spawn(new Explosion(this.localX, this.localY))
+            return
+        }
 
-        let [x, y] =  rotatePoint(this.localX, this.localY, this.localX, this.localY + this.distance, this.angle)
+        let [x, y] =  rotatePoint(this.localX, this.localY, this.localX, this.localY + this.speed * delta, this.angle)
 
         this.prevX = this.offsetX
         this.prevY = this.offsetY
@@ -40,17 +49,12 @@ export class Bullet extends GameObject {
         this.localX = Math.floor(x)
         this.localY = Math.floor(y)
 
-        if((this.distance) > this.maxDistance) {
-            this.destroy()
-            this.parent.spawn(new Explosion(this.offsetX, this.offsetY))
-            return
-        }
 
         let result = simpleRaycast(this.prevX, this.prevY, this.offsetX, this.offsetY)
 
         // if(state.map.tileFromScreenSpace(this.offsetX, this.offsetY) !== 0){
-            if(result){
-            this.parent.spawn(new Explosion(result[0], result[1]))
+        if(result){
+            this.parent.spawn(new Explosion(this.localX, this.localY))
             this.destroy()
         }   
     }

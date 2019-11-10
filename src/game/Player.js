@@ -2,6 +2,9 @@ import { GameObject } from "./engine/GameObject";
 import { GameScreen } from "../GraphicsHelper";
 
 export class Player extends GameObject {
+  get name(){
+    return 'Player'
+  }
 
   start(){
     this.localX = GameScreen.center.x

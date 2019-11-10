@@ -50,7 +50,7 @@ export function bresenhamLine(x0, y0, x1, y1){
     return points
 }
 
-const STEP = 5
+const STEP = 1
 
 export function raycast(startX, startY, endX, endY){
     let points = bresenhamLine(startX, startY, endX, endY)
@@ -73,7 +73,8 @@ export function simpleRaycast(startX, startY, endX, endY){
     let points = bresenhamLine(startX, startY, endX, endY)
     for (let i = 0; i < points.length; i += STEP) {
         const [x, y] = points[i];
-        if(state.map.tileFromScreenSpace(x, y) !== 0)
+        if(state.map.tileFromScreenSpace(x, y) !== 0){
             return [x, y]
+        }
     }
 }

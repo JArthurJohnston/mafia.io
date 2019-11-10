@@ -13,6 +13,10 @@ export class FieldOfVison extends GameObject {
     this.fovDistance = 1000
   }
 
+  get name(){
+    return 'FieldOfVison'
+  }
+
   start(){
     this.localX = GameScreen.center.x
     this.localY = GameScreen.center.y

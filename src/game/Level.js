@@ -18,7 +18,10 @@ export class Level extends GameObject {
     super()
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
-  
+  get name(){
+    return 'Level'
+  }
+
   start(){
     this.speed = 5
     this.cachedBackground = cacheLevel()
