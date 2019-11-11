@@ -12,7 +12,7 @@ export const GameScreen = {
 
 export class GraphicsHelper {
 
-    constructor(canvases, windowWidth, windowHeight){
+    constructor(canvases, windowWidth, windowHeight){   
         this.layers = canvases
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth

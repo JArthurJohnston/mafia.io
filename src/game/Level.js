@@ -2,6 +2,10 @@ import { GameObject } from "./engine/GameObject";
 import { cacheLevel } from "./engine/TiledLevelBuilder";
 import { keyBinding } from "../KeyBinding";
 import { state } from './State'
+import MouseInput from "./engine/input/MouseInput"
+import { Bullet } from "./Bullet";
+import { GameScreen } from "../GraphicsHelper";
+import { angleBetween, radiansToDegrees } from "./engine/math/PointMath";
 
 const wKey = keyBinding("w")
 const aKey = keyBinding("a")
@@ -9,12 +13,21 @@ const sKey = keyBinding("s")
 const dKey = keyBinding("d")
 
 export class Level extends GameObject {
-  
+
+  constructor(){
+    super()
+    this.handleMouseClick = this.handleMouseClick.bind(this);
+  }
+  get name(){
+    return 'Level'
+  }
+
   start(){
     this.speed = 5
     this.cachedBackground = cacheLevel()
     this.localX = -state.player.x * state.map.tileSize
     this.localY = -state.player.y * state.map.tileSize
+    MouseInput.addClickHandler(this.handleMouseClick)
   }
 
   update(delta){
@@ -25,6 +38,13 @@ export class Level extends GameObject {
     if(state.map.playerTile(this.offsetX + xMove, this.offsetY) === 0)
       this.localX += xMove
     state.updatePlayerPosition(this.localX, this.localY)
+  }
+
+  handleMouseClick(x, y){
+    let bulletXPos = -(this.offsetX - GameScreen.center.x)
+    let bulletYPos = -(this.offsetY - GameScreen.center.y)
+    let angle = angleBetween(GameScreen.center.x, GameScreen.center.y , x, y)
+    this.spawn(new Bullet(bulletXPos, bulletYPos, angle, x, y))
   }
 
   render(graphics){

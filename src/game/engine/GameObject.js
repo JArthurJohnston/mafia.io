@@ -2,7 +2,8 @@ import _ from "lodash"
 
 const BASE_PARENT = {
   offsetX: 0,
-  offsetY: 0
+  offsetY: 0,
+  name: 'BASE_PARENT'
 }
 
 export class GameObject {
@@ -23,8 +24,12 @@ export class GameObject {
     this.removeChild = this.removeChild.bind(this);
   }
 
+  get name(){
+    return 'GameObject'
+  }
  
   /**
+   * This should return the x value of where the object is on the screen
    * @returns {number} the total x offset of this object and all its parent objects (IE its world position)
    */
   get offsetX() {
@@ -32,6 +37,7 @@ export class GameObject {
   }
 
   /**
+   * This should return the y value of where the object is on the screen
    * @returns {number} the total y offset of this object and all its parent objects (IE its world position)
    */
   get offsetY() {
@@ -53,10 +59,10 @@ export class GameObject {
   }
 
   renderLoop(graphics, delta){
+    this.render(graphics, delta)
     this.children.forEach(child => {
       child.renderLoop(graphics, delta)
     });
-    this.render(graphics, delta)
   }
 
   addChild(gameObject){

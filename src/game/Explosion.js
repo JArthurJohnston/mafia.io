@@ -9,6 +9,10 @@ export class Explosion extends GameObject {
         this.frameIndex = 0
         this.frameCount = 25
     }
+    
+    get name(){
+        return 'Explosion'
+    }
 
     update(delta){
         if(this.frameIndex >= this.frameCount){

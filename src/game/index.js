@@ -7,11 +7,10 @@ import { FPSView } from "./engine/FPSView";
 
 export function init(){
   const root = new GameObject()
-  const level = new Level();
-  const player = new Player(level)
-
-  root.addChild(level)
-  player.addChild(new FieldOfVison())
+  const player = new Player()
+  
+  root.addChild(new Level())
+  root.addChild(new FieldOfVison())
   root.addChild(player)
   root.addChild(new FPSView())
   // root.addChild(new CacheView(getCache()))
