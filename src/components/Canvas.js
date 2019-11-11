@@ -33,6 +33,7 @@ export class Canvas extends Component {
             fov: this.refs.fovCanvas,
             players: this.refs.playerCanvas
         }
+        this.refs.playerCanvas.addEventListener('contextmenu', e => e.preventDefault())
         this.g = new GraphicsHelper(canvases, WIDTH, HEIGHT)
         this.g.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
         MouseInput.init()
@@ -45,9 +46,9 @@ export class Canvas extends Component {
     render() { 
         return (
             <>
-                <canvas ref="fovCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+                <canvas ref="defaultCanvas" width={WIDTH} height={HEIGHT}></canvas>
+                <canvas ref="fovCanvas" width={WIDTH} height={HEIGHT}></canvas>
                 <canvas ref="playerCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
-                <canvas ref="defaultCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
             </>
         )
     }

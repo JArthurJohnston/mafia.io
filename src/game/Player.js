@@ -27,10 +27,12 @@ export class Player extends GameObject {
   }
 
   render(graphics){
+    graphics.setLayer('players')
     graphics.drawPlayer(Math.floor(this.offsetX - this.midpoint), Math.floor(this.offsetY - this.midpoint))
     if(this.state === PLAYER_STATES.MAFIA)
       graphics.drawSkull(Math.floor(this.offsetX + 10), Math.floor(this.offsetY + 10))
     if(this.state === PLAYER_STATES.DETECTIVE)
       graphics.drawBadge(Math.floor(this.offsetX + 10), Math.floor(this.offsetY + 10))
+    graphics.restore()
   }
 }

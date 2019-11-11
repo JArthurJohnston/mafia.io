@@ -16,6 +16,7 @@ export class GraphicsHelper {
         this.layers = canvases
         this.windowHeight = windowHeight
         this.windowWidth = windowWidth
+        this.layer = 'default'
         this.setupCanvases(canvases)
     }
 
@@ -26,14 +27,18 @@ export class GraphicsHelper {
         }
     }
 
-    getContext(layer = 'default'){
-        return this.layers[layer].getContext("2d")
+    getContext(){
+        return this.layers[this.layer].getContext("2d")
     }
 
     drawText(x, y, text, color = "white", font = "30px Arial"){
         this.getContext().fillStyle = color;
         this.getContext().font = font;
         this.getContext().fillText(text, x, y);
+    }
+
+    setLayer(layerName){
+        this.layer = layerName
     }
 
     setTransparency(alpha){
@@ -62,6 +67,7 @@ export class GraphicsHelper {
     
     restore(){
         this.getContext().restore()
+        this.layer = 'default'
     }
 
     save(){
@@ -77,7 +83,6 @@ export class GraphicsHelper {
         this.getContext().beginPath();
         this.getContext().rect(x, y, w, h)
         this.getContext().fill();
-        this.getContext().stroke();
     }
 
     drawSquare(x, y, size, color){
@@ -92,20 +97,20 @@ export class GraphicsHelper {
         this.getContext().drawImage(image, x, y)
     }
 
-    drawPlayer(x, y){
-        drawPlayerOn(this.getContext(), x, y)
+    drawPlayer(x, y, layer){
+        drawPlayerOn(this.getContext(layer), x, y)
     }
 
     drawBullet(x, y){
         drawBulletOn(this.getContext(), x, y)
     }
 
-    drawBadge(x, y){
-        drawBadgeOn(this.getContext(), x, y)
+    drawBadge(x, y, layer){
+        drawBadgeOn(this.getContext(layer), x, y)
     }
 
-    drawSkull(x, y){
-        drawSkullOn(this.getContext(), x, y)
+    drawSkull(x, y, layer){
+        drawSkullOn(this.getContext(layer), x, y)
     }
 }
 
