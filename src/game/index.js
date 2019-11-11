@@ -4,6 +4,9 @@ import { Player } from "./Player";
 import { FieldOfVison } from "./FieldOfVison";
 import { FPSView } from "./engine/FPSView";
 
+// import { CacheView } from "./engine/debug/CacheView";
+// import { getCache } from "./engine/Images";
+
 
 export function init(){
   const root = new GameObject()

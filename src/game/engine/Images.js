@@ -84,6 +84,12 @@ function cacheImages(spriteSheet, callback) {
   context.drawImage(spriteSheet, 0,20,20,20, 0,0,20,20)
   context.restore()
 
+  //cache the badge
+  context.save()
+  context.translate(340,0)
+  context.drawImage(spriteSheet, 20,20,20,20, 0,0,20,20)
+  context.restore()
+
   callback(cache)
 }
 
@@ -101,6 +107,10 @@ export function drawBulletOn(context, x, y) {
 
 export function drawSkullOn(context, x, y) {
   context.drawImage(cache, 80,20,20,20, x, y, 20,20)
+}
+
+export function drawBadgeOn(context, x, y) {
+  context.drawImage(cache, 340,0,20,20, x, y, 20,20)
 }
 
 export function drawHorizontalWallOn(context, x, y) {
