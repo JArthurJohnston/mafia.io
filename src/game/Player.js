@@ -1,5 +1,6 @@
 import { GameObject } from "./engine/GameObject";
 import { GameScreen } from "../GraphicsHelper";
+import state from "./State";
 
 const PLAYER_STATES = {
   BYSTANDER: 'BYSTANDER', //0
@@ -28,6 +29,7 @@ export class Player extends GameObject {
 
   render(graphics){
     graphics.setLayer('players')
+    graphics.drawText(this.offsetX - 50, this.offsetY - 25, state.player.name, "cyan", '15px arial')
     graphics.drawPlayer(Math.floor(this.offsetX - this.midpoint), Math.floor(this.offsetY - this.midpoint))
     if(this.state === PLAYER_STATES.MAFIA)
       graphics.drawSkull(Math.floor(this.offsetX + 10), Math.floor(this.offsetY + 10))

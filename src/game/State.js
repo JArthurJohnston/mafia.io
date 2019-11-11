@@ -10,6 +10,7 @@ class GameState {
       y: 22,
       direction: 0,
       ammo: 6,
+      name: 'Jay Joe'
     }
   }
 
