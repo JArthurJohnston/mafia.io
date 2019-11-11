@@ -90,6 +90,12 @@ function cacheImages(spriteSheet, callback) {
   context.drawImage(spriteSheet, 20,20,20,20, 0,0,20,20)
   context.restore()
 
+  //cacne ammo
+  context.save()
+  context.translate(360,0)
+  context.drawImage(spriteSheet, 40,20,20,20, 0,0,40,40)
+  context.restore()
+
   callback(cache)
 }
 
@@ -135,6 +141,10 @@ export function drawAngeled3WallOn(context, x, y) {
 
 export function drawAngeled4WallOn(context, x, y) {
   context.drawImage(cache, 300,0,40,40, x, y, 40,40)
+}
+
+export function drawAmmoOn(context, x, y) {
+  context.drawImage(cache, 360,0,40,40, x, y, 40,40)
 }
 
 export function getCache(){

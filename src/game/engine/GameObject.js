@@ -13,15 +13,6 @@ export class GameObject {
     this.localY = 0
     this.parent = BASE_PARENT;
     this.children = []
-    //I dont think I need these vv
-    this.start = this.start.bind(this);
-    this.update = this.update.bind(this);
-    this.render = this.render.bind(this);
-    this.updateLoop = this.updateLoop.bind(this);
-    this.renderLoop = this.renderLoop.bind(this);
-    this.addChild = this.addChild.bind(this);
-    this.startLoop = this.startLoop.bind(this);
-    this.removeChild = this.removeChild.bind(this);
   }
 
   get name(){

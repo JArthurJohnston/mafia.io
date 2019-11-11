@@ -1,4 +1,4 @@
-import { drawStoneFloorOn, drawPlayerOn, drawBulletOn, drawBadgeOn, drawSkullOn } from "./game/engine/Images";
+import { drawStoneFloorOn, drawPlayerOn, drawBulletOn, drawBadgeOn, drawSkullOn, drawAmmoOn } from "./game/engine/Images";
 
 const ONE_RADIAN = 2 * Math.PI;
 const HEIGHT = window.innerHeight
@@ -97,20 +97,24 @@ export class GraphicsHelper {
         this.getContext().drawImage(image, x, y)
     }
 
-    drawPlayer(x, y, layer){
-        drawPlayerOn(this.getContext(layer), x, y)
+    drawPlayer(x, y){
+        drawPlayerOn(this.getContext(), x, y)
     }
 
     drawBullet(x, y){
         drawBulletOn(this.getContext(), x, y)
     }
 
-    drawBadge(x, y, layer){
-        drawBadgeOn(this.getContext(layer), x, y)
+    drawBadge(x, y){
+        drawBadgeOn(this.getContext(), x, y)
     }
 
-    drawSkull(x, y, layer){
-        drawSkullOn(this.getContext(layer), x, y)
+    drawSkull(x, y){
+        drawSkullOn(this.getContext(), x, y)
+    }
+
+    drawAmmo(x, y){
+        drawAmmoOn(this.getContext(), x, y)
     }
 }
 

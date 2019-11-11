@@ -8,7 +8,8 @@ class GameState {
     this.player = {
       x: 20,
       y: 22,
-      direction: 0
+      direction: 0,
+      ammo: 6,
     }
   }
 
@@ -59,4 +60,8 @@ class TileSet {
   }
 }
 
+//refactor this
 export const state = new GameState()
+
+export default state
+

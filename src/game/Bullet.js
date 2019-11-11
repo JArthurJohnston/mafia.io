@@ -1,6 +1,6 @@
 import { GameObject } from "./engine/GameObject";
 import { degreesToRadians, rotatePoint } from "./engine/math/PointMath";
-import {state} from './State'
+import state from './State'
 import { Explosion } from "./Explosion";
 import { raycast, simpleRaycast } from "./engine/physics/RayCast";
 
@@ -24,9 +24,11 @@ export class Bullet extends GameObject {
     }
 
     start(){
+        state.player.ammo -= 1
         this.maxDistance = 1000
         this.size = 6
         this.speed = 20
+        
         // let result = raycast(this.offsetX, this.offsetY, this.target.x, this.target.y)
         // if(result){
         //     alert(result)
