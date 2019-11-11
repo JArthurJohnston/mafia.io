@@ -39,9 +39,13 @@ class TileSet {
     return this.tiles.length
   }
 
+  tileAt(x, y){
+    return this.tiles[y][x]
+  }
+
   playerTile(xOffset, yOffset){
     const [x, y] = this.playerPosition(xOffset, yOffset)
-    return this.tiles[y][x]
+    return this.tileAt(x, y)
   }
 
   playerPosition(xOffset, yOffset){

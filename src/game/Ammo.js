@@ -20,11 +20,11 @@ export class Ammo extends GameObject {
 
     render(graphics){
         graphics.setLayer('ui')
-        graphics.setTransparency(0.1)
-        graphics.drawRect(this.offsetX, this.offsetY, 6 * 40, 40, "black")
+        graphics.setTransparency(0.15)
+        graphics.drawRect(this.offsetX, this.offsetY, 6 * 32, 40, "black")
         graphics.setTransparency(1)
         for (let i = 0; i < state.player.ammo; i++) {
-            graphics.drawAmmo(this.offsetX + i * 40, this.offsetY)
+            graphics.drawAmmo(this.offsetX + i * 30, this.offsetY)
         }
         graphics.restore()
     }

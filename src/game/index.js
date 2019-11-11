@@ -4,6 +4,7 @@ import { Player } from "./Player";
 import { FieldOfVison } from "./FieldOfVison";
 import { FPSView } from "./engine/FPSView";
 import { Ammo } from "./Ammo";
+import { MiniMap } from "./MiniMap";
 
 // import { CacheView } from "./engine/debug/CacheView";
 // import { getCache } from "./engine/Images";
@@ -18,6 +19,7 @@ export function init(){
   root.addChild(player)
   root.addChild(new FPSView())
   root.addChild(new Ammo())
+  root.addChild(new MiniMap())
   // root.addChild(new CacheView(getCache()))
   return root
 }

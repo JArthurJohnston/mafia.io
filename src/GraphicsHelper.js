@@ -21,7 +21,7 @@ export class GraphicsHelper {
     }
 
     setupCanvases(canvases){
-        const numberOfCanvases = 3
+        const numberOfCanvases = Object.keys(canvases).length
         for (let i = 0; i < numberOfCanvases; i++) {
             this.getContext(Object.keys(canvases)[i]).imageSmoothingEnabled = false
         }
