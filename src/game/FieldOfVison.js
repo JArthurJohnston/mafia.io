@@ -39,7 +39,7 @@ export class FieldOfVison extends GameObject {
   render(graphics){    
     graphics.save()
     graphics.translate(this.offsetX, this.offsetY)
-    // graphics.globalAlpha = 0.2
+    graphics.setTransparency(0.8)
     graphics.rotate(this.angle - VIEW_OFFSET)
     graphics.drawRect(-graphics.windowWidth, -(graphics.windowWidth * 1.5)/2, graphics.windowWidth, graphics.windowWidth * 1.5, "black")
     graphics.drawRect(0, -graphics.windowWidth, graphics.windowWidth, graphics.windowWidth, "black")

@@ -20,19 +20,24 @@ export class GraphicsHelper {
     }
 
     setupCanvases(canvases){
-        for (let i = 0; i < canvases.length; i++) {
-            this.getContext(i).imageSmoothingEnabled = false
+        const numberOfCanvases = 3
+        for (let i = 0; i < numberOfCanvases; i++) {
+            this.getContext(Object.keys(canvases)[i]).imageSmoothingEnabled = false
         }
     }
 
-    getContext(layerIndex = 0, config = {alpha:false}){
-        return this.layers[layerIndex].getContext("2d", config)
+    getContext(layer = 'default'){
+        return this.layers[layer].getContext("2d")
     }
 
     drawText(x, y, text, color = "white", font = "30px Arial"){
         this.getContext().fillStyle = color;
         this.getContext().font = font;
         this.getContext().fillText(text, x, y);
+    }
+
+    setTransparency(alpha){
+        this.getContext().globalAlpha = alpha
     }
 
     drawCircle(x, y, radius, color){

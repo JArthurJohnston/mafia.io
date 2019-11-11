@@ -28,7 +28,11 @@ export class Canvas extends Component {
     }
 
     componentDidMount(){
-        let canvases = [this.refs.defaultCanvas]
+        let canvases = {
+            default: this.refs.defaultCanvas, 
+            fov: this.refs.fovCanvas,
+            players: this.refs.playerCanvas
+        }
         this.g = new GraphicsHelper(canvases, WIDTH, HEIGHT)
         this.g.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
         MouseInput.init()
@@ -41,8 +45,9 @@ export class Canvas extends Component {
     render() { 
         return (
             <>
+                <canvas ref="fovCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+                <canvas ref="playerCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
                 <canvas ref="defaultCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
-                {/* <canvas ref="fovCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas> */}
             </>
         )
     }
