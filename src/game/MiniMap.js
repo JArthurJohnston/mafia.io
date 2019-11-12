@@ -15,13 +15,17 @@ export class MiniMap extends GameObject {
         this.localY = GameScreen.height - 125
     }
 
-    update(delta){
-        
-    }
-
     render(graphics){
         graphics.setLayer('ui')
-        graphics.drawSprite(this.image, this.offsetX,this.offsetY, this.image.width, this.image.height)
+        graphics.save()
+        graphics.translate(this.offsetX, this.offsetY)
+        graphics.drawSprite(this.image, 0,0, this.image.width, this.image.height)
+        graphics.drawRect(
+            this.dotSize * state.player.x,
+            this.dotSize * state.player.y,
+            4, 4,
+            "magenta"
+        )
         graphics.restore()
     }
 
