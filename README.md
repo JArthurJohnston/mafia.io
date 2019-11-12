@@ -1,3 +1,9 @@
+## Try Tt Out
+
+You can play with the current test build here: https://jarthurjohnston.github.io/mafia.io/
+
+----
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
