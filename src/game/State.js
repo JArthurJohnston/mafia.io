@@ -12,6 +12,13 @@ class GameState {
       ammo: 6,
       name: 'Jay Joe'
     }
+    this.otherPlayers = [
+      {
+        name: 'RagnarRoog',
+        x: 345,
+        y: 1945,
+      }
+    ]
   }
 
   updatePlayerPosition(xOffset, yOffset){

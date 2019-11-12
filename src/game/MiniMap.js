@@ -9,6 +9,10 @@ export class MiniMap extends GameObject {
         this.dotSize = 2
     }
 
+    get name(){
+        return 'MiniMap'
+    }
+
     start(){
         this.image = this.renderMiniMap()
         this.localX = GameScreen.width - 125

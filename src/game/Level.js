@@ -6,6 +6,7 @@ import MouseInput from "./engine/input/MouseInput"
 import { Bullet } from "./Bullet";
 import { GameScreen } from "../GraphicsHelper";
 import { angleBetween, radiansToDegrees } from "./engine/math/PointMath";
+import { UIPanels } from "./UIPanels";
 
 const wKey = keyBinding("w")
 const aKey = keyBinding("a")
@@ -18,6 +19,7 @@ export class Level extends GameObject {
     super()
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
+  
   get name(){
     return 'Level'
   }
@@ -46,12 +48,12 @@ export class Level extends GameObject {
       let bulletYPos = -(this.offsetY - GameScreen.center.y)
       let angle = angleBetween(GameScreen.center.x, GameScreen.center.y , x, y)
       this.spawn(new Bullet(bulletXPos, bulletYPos, angle, x, y))
-
     }
   }
 
   render(graphics){
-    graphics.drawBackground(this.cachedBackground, this.localX, this.localY)
+    graphics.drawBackground(this.cachedBackground, this.offsetX, this.offsetY)
+    // graphics.drawSprite(this.cachedBackground, 0, 0, GameScreen.width - this.offsetX, GameScreen.height - this.offsetY)
     // graphics.drawText(0 ,50, `Player: ${[Math.floor(-1* this.offsetX/40), Math.floor(-1* this.offsetY/40)]}`)
     // graphics.drawText(0 ,80, `Tile: ${state.map.playerTile(this.offsetX, this.offsetY)}`)
   }
