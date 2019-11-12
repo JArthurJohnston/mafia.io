@@ -3,7 +3,17 @@ import { getCache } from "../Images";
 
 export class CacheView extends GameObject{
 
+  constructor(){
+    super()
+    this.rendered = false
+  }
+
   render(graphics){
-    graphics.getContext().drawImage(getCache(), 0, 20)
+    if(!this.rendered){
+      graphics.setLayer('ui')
+      graphics.getContext().drawImage(getCache(), 0, 40)
+      graphics.restore()
+      this.rendered = true
+    }
   }
 }

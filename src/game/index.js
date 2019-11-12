@@ -24,6 +24,6 @@ export function init(){
   root.addChild(new FieldOfVison())
   root.addChild(player)
   root.addChild(uiPanels)
-  // root.addChild(new CacheView(getCache()))
+  root.addChild(new CacheView(getCache()))
   return root
 }

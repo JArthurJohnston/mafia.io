@@ -22,7 +22,7 @@ export function load(imagePath){
  */
 function cacheImages(spriteSheet, callback) {
   cache = document.createElement('canvas');
-  cache.width = 400
+  cache.width = 460
   cache.height = 80
   const context = cache.getContext('2d')
   context.imageSmoothingEnabled = false
@@ -90,11 +90,46 @@ function cacheImages(spriteSheet, callback) {
   context.drawImage(spriteSheet, 20,20,20,20, 0,0,20,20)
   context.restore()
 
-  //cacne ammo
+  //cache ammo
   context.save()
   context.translate(360,0)
   context.drawImage(spriteSheet, 40,20,20,20, 0,0,40,40)
   context.restore()
+
+  //cache first explosion frame
+
+  context.save()
+  context.translate(400,0)
+  context.drawImage(spriteSheet, 60,20,20,20, 0,0,20,20)
+  context.restore()
+
+    //cache second explosion frame
+
+    context.save()
+    context.translate(400,20)
+    context.drawImage(spriteSheet, 80,20,20,20, 0,0,20,20)
+    context.restore()
+
+    //cache third explosion frame
+
+    context.save()
+    context.translate(420,0)
+    context.drawImage(spriteSheet, 0,40,20,20, 0,0,20,20)
+    context.restore()
+
+    //cache fourth explosion frame
+
+    context.save()
+    context.translate(420,20)
+    context.drawImage(spriteSheet, 20,40,20,20, 0,0,20,20)
+    context.restore()
+
+    //cache fifth explosion frame
+
+    context.save()
+    context.translate(440,0)
+    context.drawImage(spriteSheet, 40,40,20,20, 0,0,20,20)
+    context.restore()
 
   callback(cache)
 }
@@ -145,6 +180,18 @@ export function drawAngeled4WallOn(context, x, y) {
 
 export function drawAmmoOn(context, x, y) {
   context.drawImage(cache, 360,0,40,40, x, y, 40,40)
+}
+
+const explosionIndeces = [
+  {x:400, y:0},
+  {x:400, y:20},
+  {x:420, y:0},
+  {x:420, y:20},
+  {x:440, y:0},
+]
+
+export function drawExplosionOn(context, x, y, frame){
+  context.drawImage(cache, explosionIndeces[frame].x, explosionIndeces[frame].y, 20, 20,  x, y, 20, 20)
 }
 
 export function getCache(){

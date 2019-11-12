@@ -1,4 +1,4 @@
-import { drawStoneFloorOn, drawPlayerOn, drawBulletOn, drawBadgeOn, drawSkullOn, drawAmmoOn } from "./game/engine/Images";
+import { drawStoneFloorOn, drawPlayerOn, drawBulletOn, drawBadgeOn, drawSkullOn, drawAmmoOn, drawExplosionOn } from "./game/engine/Images";
 
 const ONE_RADIAN = 2 * Math.PI;
 const HEIGHT = window.innerHeight
@@ -115,6 +115,10 @@ export class GraphicsHelper {
 
     drawAmmo(x, y){
         drawAmmoOn(this.getContext(), x, y)
+    }
+
+    drawExplosion(x, y, frame){
+        drawExplosionOn(this.getContext(), x, y, frame)
     }
 }
 

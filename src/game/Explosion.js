@@ -7,7 +7,7 @@ export class Explosion extends GameObject {
         this.localX = x
         this.localY = y
         this.frameIndex = 0
-        this.frameCount = 25
+        this.frameCount = 4
     }
     
     get name(){
@@ -24,7 +24,7 @@ export class Explosion extends GameObject {
     render(graphics){
         graphics.save()
         graphics.translate(this.offsetX, this.offsetY)
-        graphics.drawRect(0, 0, 40, 40, "red")
+        graphics.drawExplosion(0,0, this.frameIndex)
         graphics.restore()
     }
 }
