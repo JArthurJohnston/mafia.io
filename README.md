@@ -1,4 +1,4 @@
-## Try Tt Out
+## Try It Out
 
 You can play with the current test build here: https://jarthurjohnston.github.io/mafia.io/
 
