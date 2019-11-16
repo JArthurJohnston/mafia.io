@@ -45,6 +45,11 @@ export class GraphicsHelper {
         this.getContext().globalAlpha = alpha
     }
 
+    setShadow(shadowValue, color='rgba(0,0,0,0.5)'){
+        this.getContext().shadowColor = color
+        this.getContext().shadowBlur = shadowValue
+    }
+
     drawCircle(x, y, radius, color){
         this.getContext().fillStyle = color;
         this.getContext().beginPath();
