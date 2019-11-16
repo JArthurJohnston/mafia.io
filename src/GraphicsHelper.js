@@ -60,6 +60,10 @@ export class GraphicsHelper {
         this.getContext().lineTo(xb, yb);
         this.getContext().stroke(); 
     }
+
+    clear(){
+        this.getContext().clearRect(0,0, WIDTH, HEIGHT)
+    }
     
     rotate(angle){
         this.getContext().rotate(angle)

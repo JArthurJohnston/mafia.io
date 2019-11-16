@@ -8,6 +8,8 @@ class GameState {
     this.player = {
       x: 20,
       y: 22,
+      mapX: 0,
+      mapY:0,
       direction: 0,
       ammo: 6,
       name: 'Jay Joe'
@@ -15,13 +17,15 @@ class GameState {
     this.otherPlayers = [
       {
         name: 'RagnarRoog',
-        x: 345,
-        y: 1945,
+        x: 1040 + GameScreen.center.x,
+        y: 1040 + GameScreen.center.y,
       }
     ]
   }
 
   updatePlayerPosition(xOffset, yOffset){
+    this.player.mapX = - xOffset
+    this.player.mapY = -yOffset
     let [x, y] = this.map.playerPosition(xOffset, yOffset)
     this.player.x = x
     this.player.y = y
@@ -36,6 +40,7 @@ class TileSet {
   constructor(){
     this.tiles = mapTiles
     this.tileSize = 40
+    this.offsets = {x: 0, y: 0}
   }
 
   get width(){
@@ -56,6 +61,8 @@ class TileSet {
   }
 
   playerPosition(xOffset, yOffset){
+    this.offsets.x = xOffset
+    this.offsets.y = yOffset
     return [Math.floor(-xOffset / this.tileSize), Math.floor(-yOffset / this.tileSize)]
   }
 

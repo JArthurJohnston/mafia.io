@@ -15,7 +15,6 @@ const dKey = keyBinding("d")
 
 const UI_HEIGHT = Math.floor(GameScreen.height * 0.15);
 
-
 export class Level extends GameObject {
 
   constructor(){
