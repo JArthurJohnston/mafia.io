@@ -13,13 +13,16 @@ const aKey = keyBinding("a")
 const sKey = keyBinding("s")
 const dKey = keyBinding("d")
 
+const UI_HEIGHT = Math.floor(GameScreen.height * 0.15);
+
+
 export class Level extends GameObject {
 
   constructor(){
     super()
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
-  
+
   get name(){
     return 'Level'
   }
@@ -53,7 +56,7 @@ export class Level extends GameObject {
 
   render(graphics){
     graphics.drawBackground(this.cachedBackground, this.offsetX, this.offsetY)
-    // graphics.drawSprite(this.cachedBackground, 0, 0, GameScreen.width - this.offsetX, GameScreen.height - this.offsetY)
+    // graphics.drawSprite(this.cachedBackground, 0, GameScreen.height - UI_HEIGHT, GameScreen.width, GameScreen.height - this.offsetY)
     // graphics.drawText(0 ,50, `Player: ${[Math.floor(-1* this.offsetX/40), Math.floor(-1* this.offsetY/40)]}`)
     // graphics.drawText(0 ,80, `Tile: ${state.map.playerTile(this.offsetX, this.offsetY)}`)
   }

@@ -23,7 +23,7 @@ export class Explosion extends GameObject {
 
     render(graphics){
         graphics.save()
-        graphics.translate(this.offsetX, this.offsetY)
+        graphics.translate(Math.floor(this.offsetX - 10), Math.floor(this.offsetY -10))
         graphics.drawExplosion(0,0, this.frameIndex)
         graphics.restore()
     }

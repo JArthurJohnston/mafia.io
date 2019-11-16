@@ -53,8 +53,13 @@ export class Bullet extends GameObject {
 
         let result = simpleRaycast(this.prevX, this.prevY, this.offsetX, this.offsetY)
 
+        
+        
         // if(state.map.tileFromScreenSpace(this.offsetX, this.offsetY) !== 0){
-        if(result){
+            if(result){
+            //     let xDelta = result[0] - this.offsetX
+            //     let yDelta = result[1] - this.offsetY
+            // this.parent.spawn(new Explosion(this.localX + xDelta, this.localY + yDelta))
             this.parent.spawn(new Explosion(this.localX, this.localY))
             this.destroy()
         }   

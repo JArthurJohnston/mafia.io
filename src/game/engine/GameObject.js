@@ -6,6 +6,10 @@ const BASE_PARENT = {
   name: 'BASE_PARENT'
 }
 
+export function spawnAtRoot(gameObject){
+  
+}
+
 export class GameObject {
 
   constructor(){

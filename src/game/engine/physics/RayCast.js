@@ -69,6 +69,14 @@ export function raycast(startX, startY, endX, endY){
     }
 }
 
+/**
+ * 
+ * @param {number} startX 
+ * @param {number} startY 
+ * @param {number} endX 
+ * @param {number} endY 
+ * @returns {Array} the result with the x and y coords of the hit
+ */
 export function simpleRaycast(startX, startY, endX, endY){
     let points = bresenhamLine(startX, startY, endX, endY)
     for (let i = 0; i < points.length; i += STEP) {
