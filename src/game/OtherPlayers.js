@@ -1,8 +1,12 @@
 import { GameObject } from "./engine/GameObject";
 import state from "./State";
-import { angleBetween, radiansToDegrees } from "./engine/math/PointMath";
-import { stat } from "fs";
+import { angleBetween, radiansToDegrees, degreesToRadians } from "./engine/math/PointMath";
 import { GameScreen } from "../GraphicsHelper";
+import { angleDifference } from "./engine/shapes/Line";
+import input from './engine/input/MouseInput'
+
+const minViewableAngle = degreesToRadians(-45)
+const maxViewableAngle = degreesToRadians(45)
 
 export default class OtherPlayers extends GameObject {
 
@@ -48,13 +52,21 @@ class Frenemy extends GameObject {
         this.localX = this.player.x + state.map.offsets.x
         this.localY = this.player.y + state.map.offsets.y
     }
+
+    visibleToPlayer(){
+        let angle = angleDifference(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY,
+            GameScreen.center.x, GameScreen.center.y, input.x, input.y)
+        return angle > minViewableAngle && angle < maxViewableAngle
+    }
     
     render(graphics){
-        graphics.setLayer('players')
-        let angle = angleBetween(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY)
-        graphics.drawLine(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY)
-        graphics.drawText(this.offsetX - 50, this.offsetY - 25, radiansToDegrees(angle - state.player.direction), "red", '15px arial')
-        graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, "cyan")
-        graphics.restore()
+        if(this.visibleToPlayer()){
+            graphics.setLayer('players')
+            graphics.drawLine(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY)
+            graphics.drawText(this.offsetX - 50, this.offsetY - 25, this.player.name, "red", '15px arial')
+            graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, "cyan")
+            graphics.restore()
+
+        }
     }
 }

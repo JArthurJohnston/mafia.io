@@ -88,7 +88,7 @@ export function midpointBetween(x1, y1, x2, y2){
  * 
  * @returns {number} the angle in radians
  */
-export function angleDifference(x1a, y1a, x2a,y2a, x1b,y1b, x2b, y2b){
+export function angleDifference(x1a,y1a, x2a,y2a, x1b,y1b, x2b,y2b){
   let slopeA = slope(x1a,y1a, x2a,y2a)
   let slopeB = slope(x1b,y1b, x2b,y2b)
 

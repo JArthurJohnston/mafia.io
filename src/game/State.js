@@ -12,7 +12,7 @@ class GameState {
       offsetY:0,
       direction: 0,
       ammo: 6,
-      name: 'Jay Joe'
+      name: 'Jay Joe',
     }
     this.otherPlayers = [
       {
