@@ -1,6 +1,6 @@
 import { GameObject } from "./engine/GameObject";
 import state from "./State";
-import { angleBetween, radiansToDegrees, degreesToRadians } from "./engine/math/PointMath";
+import { degreesToRadians } from "./engine/math/PointMath";
 import { GameScreen } from "../GraphicsHelper";
 import { angleDifference } from "./engine/shapes/Line";
 import input from './engine/input/MouseInput'
@@ -20,19 +20,6 @@ export default class OtherPlayers extends GameObject {
         state.otherPlayers.forEach(eachOtherPlayer => {
             this.spawn(new Frenemy(eachOtherPlayer))
         });
-    }
-
-    update(delta){
-        
-    }
-
-    render(graphics){
-        // graphics.setLayer('players')
-        // state.OtherPlayers.forEach(eachOtherPlayer => {
-        //     graphics.drawText(this.offsetX - 50, this.offsetY - 25, eachOtherPlayer.name, "cyan", '15px arial')
-        //     graphics.drawRect(this.offsetX, this.offsetY, 40, 40, "cyan")
-        // });
-        // graphics.restore()
     }
 }
 
