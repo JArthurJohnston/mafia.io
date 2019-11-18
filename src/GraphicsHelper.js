@@ -58,7 +58,7 @@ export class GraphicsHelper {
         this.getContext().stroke();
     }
 
-    drawLine(xa, ya, xb, yb, color){
+    drawLine(xa, ya, xb, yb, color="cyan"){
         this.getContext().strokeStyle = color;
         this.getContext().beginPath();
         this.getContext().moveTo(xa, ya);

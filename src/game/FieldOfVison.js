@@ -4,7 +4,7 @@ import input from './engine/input/MouseInput'
 import {state} from "./State"
 import { GameScreen } from "../GraphicsHelper";
 
-const VIEW_OFFSET = degreesToRadians(140)
+const VIEW_OFFSET = degreesToRadians(134)
 
 export class FieldOfVison extends GameObject {
 
