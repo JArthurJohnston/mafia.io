@@ -1,6 +1,6 @@
 import { GameObject } from "./engine/GameObject";
 import state from "./State";
-import { degreesToRadians } from "./engine/math/PointMath";
+import { degreesToRadians, angleFromPoints } from "./engine/math/PointMath";
 import { GameScreen } from "../GraphicsHelper";
 import { angleDifference } from "./engine/shapes/Line";
 import input from './engine/input/MouseInput'
@@ -41,15 +41,13 @@ class Frenemy extends GameObject {
     }
 
     visibleToPlayer(){
-        let angle = angleDifference(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY,
-            GameScreen.center.x, GameScreen.center.y, input.x, input.y)
+        let angle = angleFromPoints(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY, input.x, input.y)
         return angle > minViewableAngle && angle < maxViewableAngle
     }
     
     render(graphics){
         if(this.visibleToPlayer()){
             graphics.setLayer('players')
-            graphics.drawLine(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY)
             graphics.drawText(this.offsetX - 50, this.offsetY - 25, this.player.name, "red", '15px arial')
             graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, "cyan")
             graphics.restore()

@@ -1,3 +1,5 @@
+import { distanceBetween } from "../shapes/Line";
+
 export function degreesToRadians(angleInDegrees){
   return angleInDegrees * Math.PI / 180
 }
@@ -33,4 +35,21 @@ export function rotatePoint(centerX, centerY, x, y, angle) {
  */
 export function angleBetween(x1, y1, x2, y2){
   return Math.atan2(x2 - x1, (y2 - y1) * -1 );
+}
+
+/**
+ * returns the angle between two lines that meet at the origin point
+ * @param {number} originX 
+ * @param {number} originY 
+ * @param {number} p1x 
+ * @param {number} p1y 
+ * @param {number} p2x 
+ * @param {number} p2y 
+ */
+export function angleFromPoints(originX,originY, p1x,p1y, p2x,p2y){
+  let dist1 = distanceBetween(originX, originY, p1x, p1y)
+  let dist2 = distanceBetween(originX, originY, p2x, p2y)
+  let dist3 = distanceBetween(p1x, p1y, p2x, p2y)
+
+  return Math.acos(((dist1 * dist1) + (dist2 * dist2) - (dist3 * dist3)) / (2 * dist1 * dist2))
 }

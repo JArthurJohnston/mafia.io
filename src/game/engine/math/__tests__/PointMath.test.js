@@ -1,4 +1,4 @@
-import { radiansToDegrees, degreesToRadians, rotateAround, angleBetween } from "../PointMath"
+import { radiansToDegrees, degreesToRadians, rotateAround, angleBetween, angleFromPoints } from "../PointMath"
 
 describe('PointMath', () => {
   describe('radiansToDegrees', () => {
@@ -52,6 +52,13 @@ describe('PointMath', () => {
       expect(angleBetween(5,5, 0,10)).toEqual(degreesToRadians(-135))
 
       expect(angleBetween(5,5, 5,10)).toEqual(degreesToRadians(180))
+    })
+  })
+
+  describe('angleFromPoints', () => {
+    it('should return the angle from 2 points and an origin point', () => {
+      let angle = angleFromPoints(0,0, 5,0, 0,5)
+      expect(radiansToDegrees( angle)).toEqual(90.00000000000001) //close enough
     })
   })
 })
