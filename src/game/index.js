@@ -31,6 +31,6 @@ export function init(){
   root.addChild(player)
   root.addChild(new OtherPlayers())
   root.addChild(uiPanels)
-  root.addChild(new CacheView(getCache()))
+  // root.addChild(new CacheView(getCache()))
   return root
 }
