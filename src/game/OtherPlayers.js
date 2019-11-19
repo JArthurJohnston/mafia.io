@@ -2,7 +2,6 @@ import { GameObject } from "./engine/GameObject";
 import state from "./State";
 import { degreesToRadians, angleFromPoints } from "./engine/math/PointMath";
 import { GameScreen } from "../GraphicsHelper";
-import { angleDifference } from "./engine/shapes/Line";
 import input from './engine/input/MouseInput'
 
 const minViewableAngle = degreesToRadians(-45)
@@ -51,7 +50,6 @@ class Frenemy extends GameObject {
             graphics.drawText(this.offsetX - 50, this.offsetY - 25, this.player.name, "red", '15px arial')
             graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, "cyan")
             graphics.restore()
-
         }
     }
 }
