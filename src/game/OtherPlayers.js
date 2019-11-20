@@ -15,6 +15,10 @@ export default class OtherPlayers extends GameObject {
         this.playerMap = {}
     }
 
+    name(){
+        return 'OtherPlayers'
+    }
+
     start(){
         //spawn all the players
         state.otherPlayers.forEach(eachOtherPlayer => {
@@ -30,14 +34,24 @@ class Frenemy extends GameObject {
         this.player = otherPlayer
     }
 
-    start(){
+    name(){
+        return 'Frenemy'
+    }
+
+    updatePosition(){
+        /*
+        the state.map.offsets will always be negative, 
+        */
         this.localX = this.player.x + state.map.offsets.x
         this.localY = this.player.y + state.map.offsets.y
     }
 
+    start(){
+        this.updatePosition()
+    }
+
     update(delta){
-        this.localX = this.player.x + state.map.offsets.x
-        this.localY = this.player.y + state.map.offsets.y
+        this.updatePosition()
     }
 
     visibleToPlayer(){
@@ -49,6 +63,8 @@ class Frenemy extends GameObject {
     render(graphics){
         if(this.visibleToPlayer()){
             graphics.setLayer('players')
+            graphics.drawText(this.offsetX - 50, this.offsetY - 125, distanceBetween(this.offsetX, this.offsetY, GameScreen.center.x, GameScreen.center.y), "red", '15px arial')
+            graphics.drawText(this.offsetX - 50, this.offsetY - 150, [GameScreen.center.x, GameScreen.center.y], "red", '15px arial')
             graphics.drawText(this.offsetX - 50, this.offsetY - 25, this.player.name, "red", '15px arial')
             graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, "cyan")
             graphics.restore()

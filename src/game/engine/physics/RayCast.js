@@ -1,4 +1,6 @@
 import { state } from "../../State"
+import { distanceBetween } from "../shapes/Line"
+import { GameScreen } from "../../../GraphicsHelper"
 
 /**
  * returns all the points on a line between (x0, y0) and (x1, y1)
@@ -81,8 +83,25 @@ export function simpleRaycast(startX, startY, endX, endY){
     let points = bresenhamLine(startX, startY, endX, endY)
     for (let i = 0; i < points.length; i += STEP) {
         const [x, y] = points[i];
-        if(state.map.tileFromScreenSpace(x, y) !== 0){
+        if(hitAWall(x, y) || hitAnotherPlayer(x, y) !== null){
             return [x, y]
         }
     }
+}
+
+function hitAWall(xPosition, yPosition){
+    return state.map.tileFromScreenSpace(xPosition, yPosition) !== 0
+}
+
+export function hitAnotherPlayer(xPosition, yPosition){
+    for (let i = 0; i < state.otherPlayers.length; i++) {
+        const eachPlayer = state.otherPlayers[i];
+
+        let playerX = eachPlayer.x + state.map.offsets.x
+        let playerY = eachPlayer.y + state.map.offsets.y
+        if(distanceBetween(xPosition, yPosition, playerX, playerY) <= 50){
+            return eachPlayer
+        }
+    }
+    return null
 }
