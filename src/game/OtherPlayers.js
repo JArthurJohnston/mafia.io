@@ -3,6 +3,7 @@ import state from "./State";
 import { degreesToRadians, angleFromPoints } from "./engine/math/PointMath";
 import { GameScreen } from "../GraphicsHelper";
 import input from './engine/input/MouseInput'
+import { distanceBetween } from "./engine/shapes/Line";
 
 const minViewableAngle = degreesToRadians(-45)
 const maxViewableAngle = degreesToRadians(45)
@@ -41,7 +42,8 @@ class Frenemy extends GameObject {
 
     visibleToPlayer(){
         let angle = angleFromPoints(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY, input.x, input.y)
-        return angle > minViewableAngle && angle < maxViewableAngle
+        const distanceToPlayer = distanceBetween(this.offsetX, this.offsetY, GameScreen.center.x, GameScreen.center.y)
+        return angle > minViewableAngle && angle < maxViewableAngle || distanceToPlayer <= 70
     }
     
     render(graphics){
