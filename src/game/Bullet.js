@@ -2,7 +2,7 @@ import { GameObject } from "./engine/GameObject";
 import { degreesToRadians, rotatePoint } from "./engine/math/PointMath";
 import state from './State'
 import { Explosion } from "./Explosion";
-import { raycast, simpleRaycast } from "./engine/physics/RayCast";
+import { simpleRaycast } from "./engine/physics/RayCast";
 
 const oneEighty = degreesToRadians(180)
 
@@ -38,8 +38,7 @@ export class Bullet extends GameObject {
     update(delta){
         this.distance += this.speed * delta
         if((this.distance) > this.maxDistance) {
-            this.destroy()
-            this.parent.spawn(new Explosion(this.localX, this.localY))
+            this.explode(this.localX, this.localY)
             return
         }
 
@@ -53,16 +52,19 @@ export class Bullet extends GameObject {
 
         let result = simpleRaycast(this.prevX, this.prevY, this.offsetX, this.offsetY)
 
-        
-        
         // if(state.map.tileFromScreenSpace(this.offsetX, this.offsetY) !== 0){
             if(result){
             //     let xDelta = result[0] - this.offsetX
             //     let yDelta = result[1] - this.offsetY
             // this.parent.spawn(new Explosion(this.localX + xDelta, this.localY + yDelta))
-            this.parent.spawn(new Explosion(this.localX, this.localY))
-            this.destroy()
-        }   
+            result.object.hit()
+            this.explode(this.localX, this.localY)
+        }
+    }
+
+    explode(x, y){
+        this.parent.spawn(new Explosion(x, y))
+        this.destroy()
     }
 
     render(graphics){

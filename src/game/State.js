@@ -15,11 +15,7 @@ class GameState {
       name: 'Jay Joe',
     }
     this.otherPlayers = [
-      {
-        name: 'RagnarRoog',
-        x: 1040 + GameScreen.center.x,
-        y: 1040 + GameScreen.center.y,
-      }
+      new PlayerModel('RagnarRoog', 1040 + GameScreen.center.x, 1040 + GameScreen.center.y)
     ]
   }
 
@@ -75,7 +71,34 @@ class TileSet {
     if(yIndex < 0 || yIndex > this.height || xIndex < 0 ||xIndex > this.width){
       return -1
     }
-    return this.tiles[yIndex][xIndex]
+    return new Tile(xIndex, yIndex, this.tileAt(xIndex, yIndex))
+  }
+}
+
+class Tile {
+  constructor(x, y, index){
+    this.index = index
+    this.position = {x, y}
+  }
+
+  hit(){}
+}
+
+export const PLAYER_STATES = {
+  ALIVE: 'ALIVE',
+  DEAD:'DEAD'
+}
+
+class PlayerModel {
+  constructor(name, x, y){
+    this.state = PLAYER_STATES.ALIVE
+    this.name = name
+    this.x = x
+    this.y = y
+  }
+
+  hit(){
+    this.state = PLAYER_STATES.DEAD
   }
 }
 

@@ -83,14 +83,27 @@ export function simpleRaycast(startX, startY, endX, endY){
     let points = bresenhamLine(startX, startY, endX, endY)
     for (let i = 0; i < points.length; i += STEP) {
         const [x, y] = points[i];
-        if(hitAWall(x, y) || hitAnotherPlayer(x, y) !== null){
-            return [x, y]
+        const wall = hitAWall(x, y)
+        if(wall !== null){
+            return new RaycasResult(wall, x, y)
+        }
+        const player = hitAnotherPlayer(x, y)
+        if(player !== null){
+            return new RaycasResult(player, x, y)
         }
     }
 }
 
 function hitAWall(xPosition, yPosition){
-    return state.map.tileFromScreenSpace(xPosition, yPosition) !== 0
+    const tile = state.map.tileFromScreenSpace(xPosition, yPosition)
+    return tile.index !== 0 ? tile : null
+}
+
+class RaycasResult {
+    constructor(object, x, y){
+        this.object = object
+        this.position = {x, y}
+    }
 }
 
 export function hitAnotherPlayer(xPosition, yPosition){

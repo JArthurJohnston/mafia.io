@@ -1,5 +1,5 @@
 import { GameObject } from "./engine/GameObject";
-import state from "./State";
+import state, { PLAYER_STATES } from "./State";
 import { degreesToRadians, angleFromPoints } from "./engine/math/PointMath";
 import { GameScreen } from "../GraphicsHelper";
 import input from './engine/input/MouseInput'
@@ -54,6 +54,10 @@ class Frenemy extends GameObject {
         this.updatePosition()
     }
 
+    get color(){
+        return this.player.state === PLAYER_STATES.ALIVE ? "cyan" : "white"
+    }
+
     visibleToPlayer(){
         let angle = angleFromPoints(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY, input.x, input.y)
         const distanceToPlayer = distanceBetween(this.offsetX, this.offsetY, GameScreen.center.x, GameScreen.center.y)
@@ -63,10 +67,8 @@ class Frenemy extends GameObject {
     render(graphics){
         if(this.visibleToPlayer()){
             graphics.setLayer('players')
-            graphics.drawText(this.offsetX - 50, this.offsetY - 125, distanceBetween(this.offsetX, this.offsetY, GameScreen.center.x, GameScreen.center.y), "red", '15px arial')
-            graphics.drawText(this.offsetX - 50, this.offsetY - 150, [GameScreen.center.x, GameScreen.center.y], "red", '15px arial')
             graphics.drawText(this.offsetX - 50, this.offsetY - 25, this.player.name, "red", '15px arial')
-            graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, "cyan")
+            graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, this.color)
             graphics.restore()
         }
     }
