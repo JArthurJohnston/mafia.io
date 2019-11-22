@@ -1,6 +1,12 @@
 import mapTiles from "./maps/default2.json"
 import { GameScreen } from "../GraphicsHelper.js"
 
+class MainPlayer {
+  constructor(){
+    
+  }
+}
+
 class GameState {
 
   constructor(){
