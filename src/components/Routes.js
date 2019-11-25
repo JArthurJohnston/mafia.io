@@ -6,12 +6,16 @@ import {
   } from "react-router-dom";
 import { Canvas } from "./Canvas";
 import LevelEdit from "./LevelEdit";
+import AvatarEdit from "./AvatarEdit";
 
 const Routes = (props) => {
     return(
         <Router>
             <Switch>
-                <Route path="/level-edit">
+                <Route path='/edit-avatar'>
+                    <AvatarEdit />
+                </Route>
+                <Route path="/edit-map">
                     <LevelEdit />
                 </Route>
                 <Route path="/">
