@@ -11,3 +11,8 @@
     align-items: center;
     height: 100vh;
 }
+
+.paint-controls {
+    display: flex;
+    flex-direction: column;
+}

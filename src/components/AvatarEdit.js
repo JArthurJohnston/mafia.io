@@ -23,26 +23,26 @@ class AvatarEdit extends Component {
             backgroundColor: '#B8E986',
             brushColor: '#000',
             bitmap: [
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#000','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
-                ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff'],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,'#000',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
             ]
         }
     this.defaultBitmap()
@@ -51,7 +51,8 @@ class AvatarEdit extends Component {
     defaultBitmap(){
         for (let y = 0; y < 20; y++) {
             for (let x = 0; x < 20; x++) {
-                this.state.bitmap[x][y] = this.state.backgroundColor
+                if(this.state.bitmap[x][y] === null)
+                    this.state.bitmap[x][y] = this.state.backgroundColor
             }
         }
     }
@@ -71,13 +72,14 @@ class AvatarEdit extends Component {
     }
 
     drawAvatar(){
+        const pixelSize = SIZE / 20
         for (let y = 0; y < 20; y++) {
             for (let x = 0; x < 20; x++) {
                 drawRect(
                     this.drawContext, 
-                    Math.floor(x * this.pixelWidth), 
-                    Math.floor(y * this.pixelHeight), 
-                    20, 20, this.state.bitmap[x][y])
+                    x * pixelSize, 
+                    y * pixelSize, 
+                    pixelSize, pixelSize, this.state.bitmap[x][y])
             }
         }
     }
@@ -90,14 +92,21 @@ class AvatarEdit extends Component {
         let {} = this.props;
         return(
         <div className='avatar-edit-container'>
-            <label>Background</label>
-            <SketchPicker 
-                // onChangeComplete={(color) => this.setState({backgroundColor: color.hex})}
-            />
-            {/* <label>Brush</label>
-            <SketchPicker 
-                onChangeComplete={(color) => this.setState({brushColor: color.hex})}
-            /> */}
+            <p>Background</p>
+            <div className='paint-controls'>
+                <SketchPicker 
+                    color={ this.state.backgroundColor }
+                    onChangeComplete={ (color) => {
+                        this.setState({backgroundColor: color.hex})
+                        this.drawAvatar()
+                    }}
+                />
+                <label>Brush</label>
+                <SketchPicker 
+                    color={ this.state.brushColor }
+                    onChangeComplete={ (color) => this.setState({brushColor: color.hex}) }
+                />
+            </div>
             <canvas 
                 onClick={this.handlePaint}
                 className='avatar-canvas' 
