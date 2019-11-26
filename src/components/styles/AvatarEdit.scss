@@ -1,0 +1,18 @@
+.avatar-canvas {
+    position: relative;
+    width: 50vh;
+    height: 50vh;
+    border: 1px solid;
+}
+
+.avatar-edit-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+}
+
+.paint-controls {
+    display: flex;
+    flex-direction: column;
+}
