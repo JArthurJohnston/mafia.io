@@ -1,5 +1,6 @@
 import mapTiles from "./maps/default2.json"
 import { GameScreen } from "../GraphicsHelper.js"
+import GameServer from "./engine/networking/IOHandler.js"
 
 class MainPlayer {
   constructor(){
@@ -31,6 +32,8 @@ class GameState {
     let [x, y] = this.map.playerPosition(xOffset, yOffset)
     this.player.x = x
     this.player.y = y
+
+    GameServer.playerMoved(this.player.offsetX, this.player.offsetY, this.player.name)
   }
 }
 
