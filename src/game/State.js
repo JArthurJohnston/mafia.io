@@ -26,7 +26,7 @@ class GameState {
   }
 
   updatePlayerPosition(xOffset, yOffset){
-    this.player.offsetX = - xOffset
+    this.player.offsetX = -xOffset
     this.player.offsetY = -yOffset
     let [x, y] = this.map.playerPosition(xOffset, yOffset)
     this.player.x = x
