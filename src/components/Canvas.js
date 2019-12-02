@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import { GraphicsHelper } from '../GraphicsHelper'
+import { GraphicsHelper, GameScreen } from '../GraphicsHelper'
 import { init } from '../game'
 import MouseInput from '../game/engine/input/MouseInput'
+import GameServer from '../game/engine/networking/IOHandler'
 import { load } from '../game/engine/Images'
 import spritesheet from "../res/sprite-sheet.png"
 
@@ -38,6 +39,9 @@ export class Canvas extends Component {
         this.g = new GraphicsHelper(canvases, WIDTH, HEIGHT)
         this.g.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
         MouseInput.init()
+        GameServer.init('http://localhost:3001')
+        GameServer.addPlayer()
+        
         load(spritesheet).then(() => {
             this.game.startLoop(this.g)
             requestAnimationFrame(this.loop);
