@@ -8,7 +8,7 @@ import { Canvas } from "./Canvas";
 import LevelEdit from "./LevelEdit";
 import AvatarEdit from "./AvatarEdit";
 
-const Routes = (props) => {
+export default function Routes() {
     return(
         <Router>
             <Switch>
@@ -25,5 +25,3 @@ const Routes = (props) => {
         </Router>
     )
 }
-
-export default Routes;

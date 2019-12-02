@@ -20,6 +20,18 @@ class IOHandler {
             x, y, name
         })
     }
+
+    onPlayerAdded(callback){
+        this.socket.on('frenemyAdded', (player) => {
+            if(player.name !== state.player.name){
+                callback(player)
+            }
+        })
+    }
+
+    onUpdate(callback){
+        this.socket.on('state_of_the_world', callback)
+    }
 }
 
 const GameServer = new IOHandler()

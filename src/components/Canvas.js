@@ -16,6 +16,7 @@ export class Canvas extends Component {
         super()
         this.lastFrameTime = 0
         this.loop = this.loop.bind(this);
+        GameServer.init('http://localhost:3001')
         this.game = init()
     }
 
@@ -39,7 +40,6 @@ export class Canvas extends Component {
         this.g = new GraphicsHelper(canvases, WIDTH, HEIGHT)
         this.g.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
         MouseInput.init()
-        GameServer.init('http://localhost:3001')
         GameServer.addPlayer()
         
         load(spritesheet).then(() => {

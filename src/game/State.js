@@ -1,6 +1,7 @@
 import mapTiles from "./maps/default2.json"
 import { GameScreen } from "../GraphicsHelper.js"
 import GameServer from "./engine/networking/IOHandler.js"
+import getName from 'node-random-name'
 
 class MainPlayer {
   constructor(){
@@ -19,7 +20,7 @@ class GameState {
       offsetY:0,
       direction: 0,
       ammo: 6,
-      name: 'Jay Joe',
+      name: getName(),
     }
     this.otherPlayers = [
       new PlayerModel('RagnarRoog', 1040 + GameScreen.center.x, 1040 + GameScreen.center.y)
