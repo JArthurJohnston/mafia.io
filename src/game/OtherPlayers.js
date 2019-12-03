@@ -52,13 +52,14 @@ class Frenemy extends GameObject {
         // console.log(JSON.stringify(stateOfTheWorld));
         
         const player = stateOfTheWorld.playerMap[this.player.name]
-        this.localX = player.x - state.map.offsets.x
-        this.localY = player.y - state.map.offsets.y
+        this.localX = player.x + state.map.offsets.x
+        this.localY = player.y + state.map.offsets.y
     }
 
     updatePosition(){
         /*
         the state.map.offsets will always be negative, 
+        these will be parented to the player
         */
         this.localX = this.player.x + state.map.offsets.x
         this.localY = this.player.y + state.map.offsets.y

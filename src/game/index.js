@@ -29,7 +29,7 @@ export function init(){
   root.addChild(new FieldOfVison())
   root.addChild(playerScreenWipe)
   root.addChild(player)
-  root.addChild(new OtherPlayers())
+  player.addChild(new OtherPlayers())
   root.addChild(uiPanels)
   // root.addChild(new CacheView(getCache()))
   return root
