@@ -16,6 +16,8 @@ export default class OtherPlayers extends GameObject {
         this.playerMap = {}
         this.addPlayer = this.addPlayer.bind(this);
         GameServer.onPlayerAdded(this.addPlayer)
+        this.localX = GameScreen.center.x
+        this.localY = GameScreen.center.y
     }
 
     addPlayer(player){
@@ -52,8 +54,8 @@ class Frenemy extends GameObject {
         // console.log(JSON.stringify(stateOfTheWorld));
         
         const player = stateOfTheWorld.playerMap[this.player.name]
-        this.localX = player.x + state.map.offsets.x
-        this.localY = player.y + state.map.offsets.y
+        this.localX = player.x //+ state.map.offsets.x
+        this.localY = player.y //+ state.map.offsets.y
     }
 
     updatePosition(){
@@ -61,8 +63,8 @@ class Frenemy extends GameObject {
         the state.map.offsets will always be negative, 
         these will be parented to the player
         */
-        this.localX = this.player.x + state.map.offsets.x
-        this.localY = this.player.y + state.map.offsets.y
+        this.localX = this.player.x //+ state.map.offsets.x
+        this.localY = this.player.y //+ state.map.offsets.y
     }
 
     start(){
@@ -80,11 +82,11 @@ class Frenemy extends GameObject {
     }
     
     render(graphics){
-        if(this.visibleToPlayer()){
+        // if(this.visibleToPlayer()){
             graphics.setLayer('players')
             graphics.drawText(this.offsetX - 50, this.offsetY - 25, this.player.name, "red", '15px arial')
             graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, this.color)
             graphics.restore()
-        }
+        // }
     }
 }

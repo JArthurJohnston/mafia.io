@@ -4,7 +4,13 @@ import state from '../../State'
 class IOHandler {
 
     init(url){
+        this.updateCallbacks = []
+        this.playerReceived = false
+        this.dispatchUpdates = this.dispatchUpdates.bind(this);
         this.socket = socket(url)
+        this.socket.on('connected', () => this.addPlayer())
+        this.socket.on('playerReceived', () => this.playerReceived = true)
+        this.socket.on('state_of_the_world', this.dispatchUpdates)
     }
 
     addPlayer(){
@@ -16,9 +22,11 @@ class IOHandler {
     }
 
     playerMoved(x, y, name){
-        this.socket.emit('playerMoved', {
-            x, y, name
-        })
+        // if(this.playerReceived){
+            this.socket.emit('playerMoved', {
+                x, y, name
+            })
+        // }
     }
 
     onPlayerAdded(callback){
@@ -29,8 +37,14 @@ class IOHandler {
         })
     }
 
+    dispatchUpdates(newState){
+        for (let i = 0; i < this.updateCallbacks.length; i++) {
+            this.updateCallbacks[i](newState)
+        }
+    }
+    
     onUpdate(callback){
-        this.socket.on('state_of_the_world', callback)
+        this.updateCallbacks.push(callback)
     }
 }
 

@@ -24,7 +24,7 @@ export class Canvas extends Component {
         const elapsedFrameTime = time - this.lastFrameTime;
         const deltaTime = FRAME_INTERVAL / elapsedFrameTime;
         this.game.updateLoop(deltaTime)
-        this.game.renderLoop(this.g, deltaTime)
+        this.game.renderLoop(this.graphics, deltaTime)
         this.lastFrameTime = time
         requestAnimationFrame(this.loop); 
     }
@@ -34,16 +34,16 @@ export class Canvas extends Component {
             default: this.refs.defaultCanvas, 
             fov: this.refs.fovCanvas,
             players: this.refs.playerCanvas,
-            ui: this.refs.uiCanvas
+            ui: this.refs.uiCanvas,
+            debug: this.refs.debugCanvas
         }
-        this.refs.uiCanvas.addEventListener('contextmenu', e => e.preventDefault())
-        this.g = new GraphicsHelper(canvases, WIDTH, HEIGHT)
-        this.g.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
+        this.refs.debugCanvas.addEventListener('contextmenu', event => event.preventDefault())
+        this.graphics = new GraphicsHelper(canvases, WIDTH, HEIGHT)
+        this.graphics.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
         MouseInput.init()
-        GameServer.addPlayer()
         
         load(spritesheet).then(() => {
-            this.game.startLoop(this.g)
+            this.game.startLoop(this.graphics)
             requestAnimationFrame(this.loop);
         })
     }
@@ -54,7 +54,16 @@ export class Canvas extends Component {
                 <canvas ref="defaultCanvas" width={WIDTH} height={HEIGHT}></canvas>
                 <canvas ref="fovCanvas" width={WIDTH} height={HEIGHT}></canvas>
                 <canvas ref="playerCanvas" width={WIDTH} height={HEIGHT}></canvas>
-                <canvas ref="uiCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+                <canvas ref="uiCanvas" width={WIDTH} height={HEIGHT}></canvas>
+                <canvas ref="debugCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+                {/* <div 
+                    ref='screenInput' 
+                    style={{width: '100vw', height: '100vh'}} 
+                    onClick={() => {
+                        alert('clicked')
+                        // MouseInput.handleClick()
+                    }}
+                /> */}
             </>
         )
     }

@@ -30,9 +30,9 @@ export class Level extends GameObject {
   start(){
     this.speed = 5
     this.cachedBackground = cacheLevel()
+    MouseInput.addClickHandler(this.handleMouseClick)
     this.localX = -state.player.x * state.map.tileSize
     this.localY = -state.player.y * state.map.tileSize
-    MouseInput.addClickHandler(this.handleMouseClick)
     state.updatePlayerPosition(this.localX, this.localY)
   }
 
@@ -73,9 +73,6 @@ export class Level extends GameObject {
 
   render(graphics){
     graphics.drawBackground(this.cachedBackground, this.offsetX, this.offsetY)
-    // graphics.drawSprite(this.cachedBackground, 0, GameScreen.height - UI_HEIGHT, GameScreen.width, GameScreen.height - this.offsetY)
-    // graphics.drawText(0 ,50, `Player: ${[Math.floor(-1* this.offsetX/40), Math.floor(-1* this.offsetY/40)]}`)
-    // graphics.drawText(0 ,80, `Tile: ${state.map.playerTile(this.offsetX, this.offsetY)}`)
   }
 
   handleKeyboardInput(delta){

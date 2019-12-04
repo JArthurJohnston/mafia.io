@@ -2,13 +2,13 @@ import { GameObject } from "./engine/GameObject";
 import { GameScreen } from "../GraphicsHelper";
 import state from "./State";
 
-const PLAYER_STATES = {
-  BYSTANDER: 'BYSTANDER', //0
-  MAFIA: 'MAFIA',         //1
-  DETECTIVE: 'DETECTIVE', //2
+export const PLAYER_STATES = {
+  BYSTANDER: 'BYSTANDER',
+  MAFIA: 'MAFIA',
+  DETECTIVE: 'DETECTIVE',
 }
 
-export class Player extends GameObject {
+export default class Player extends GameObject {
 
   constructor(){
     super()
