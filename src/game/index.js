@@ -34,10 +34,10 @@ export function init(){
   const level = new Level();
   level.addChild(new OtherPlayers())
 
-  root.addChild(level)
-  root.addChild(new FieldOfVison())
   root.addChild(playerScreenWipe)
   root.addChild(debugScreenWipe)
+  root.addChild(new FieldOfVison())
+  root.addChild(level)
   root.addChild(player)
   root.addChild(uiPanels)
   // root.addChild(new CacheView(getCache()))
