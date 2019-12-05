@@ -35,7 +35,7 @@ export class Canvas extends Component {
             fov: this.refs.fovCanvas,
             players: this.refs.playerCanvas,
             ui: this.refs.uiCanvas,
-            debug: this.refs.debugCanvas
+            debug: this.refs.debugCanvas,
         }
         this.refs.debugCanvas.addEventListener('contextmenu', event => event.preventDefault())
         this.graphics = new GraphicsHelper(canvases, WIDTH, HEIGHT)

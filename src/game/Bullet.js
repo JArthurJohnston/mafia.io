@@ -4,15 +4,18 @@ import state from './State'
 import { Explosion } from "./Explosion";
 import { simpleRaycast } from "./engine/physics/RayCast";
 import GameServer from "./engine/networking/IOHandler";
+import { GameScreen } from "../GraphicsHelper";
 
 const oneEighty = degreesToRadians(180)
 
 export class Bullet extends GameObject {
 
     static fire(x, y, angle){
+        let bulletXPos = -(x - GameScreen.center.x)
+        let bulletYPos = -(y - GameScreen.center.y)
         const id = `${state.player.name}:${Date.now}`
-        GameServer.spawnBullet(x, y, angle, id)
-        return new Bullet(x, y, angle, id)
+        GameServer.spawnBullet(-x, -y, angle, id)
+        return new Bullet(bulletXPos, bulletYPos, angle, id)
     }
 
     constructor(x, y, angle, id){
@@ -35,7 +38,6 @@ export class Bullet extends GameObject {
         this.maxDistance = 1000
         this.size = 6
         this.speed = 20
-        GameServer.spawnBullet(-this.localX, -this.localY, this.angle, this.id)
     }
 
     update(delta){
@@ -68,6 +70,7 @@ export class Bullet extends GameObject {
     }
 
     render(graphics){
+        graphics.setLayer('players')
         graphics.save()
         graphics.translate(this.offsetX, this.offsetY)
         graphics.rotate(this.angle + oneEighty)
