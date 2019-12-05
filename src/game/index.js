@@ -20,8 +20,10 @@ export function init(){
   const fpsView = new FPSView();
   const screenView = new ScreenInfoView()
   const uiPanels = new UIPanels();
+
   const playerScreenWipe = new ScreenWipe()
   playerScreenWipe.layer = 'players'
+
   const debugScreenWipe = new ScreenWipe()
   debugScreenWipe.layer = 'debug'
 
@@ -36,9 +38,9 @@ export function init(){
 
   root.addChild(playerScreenWipe)
   root.addChild(debugScreenWipe)
-  root.addChild(new FieldOfVison())
   root.addChild(level)
   root.addChild(player)
+  root.addChild(new FieldOfVison())
   root.addChild(uiPanels)
   // root.addChild(new CacheView(getCache()))
   return root
