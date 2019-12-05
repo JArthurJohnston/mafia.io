@@ -17,27 +17,27 @@ import MousePosition from "./debugging/MousePosition";
 export function init(){
   const root = new GameObject()
   const player = new Player()
-  const fpsView = new FPSView();
-  const screenView = new ScreenInfoView()
   const uiPanels = new UIPanels();
-
+  
+  const debugTools = new GameObject()
+  const debugScreenWipe = new ScreenWipe()
+  debugScreenWipe.layer = 'debug'
+  debugTools.addChild(debugScreenWipe)
+  debugTools.addChild(new FPSView());
+  debugTools.addChild(new ScreenInfoView())
+  debugTools.addChild(new MousePosition())
+  
   const playerScreenWipe = new ScreenWipe()
   playerScreenWipe.layer = 'players'
 
-  const debugScreenWipe = new ScreenWipe()
-  debugScreenWipe.layer = 'debug'
-
-  uiPanels.addChild(fpsView)
-  uiPanels.addChild(screenView)
-  uiPanels.addChild(new MousePosition())
   uiPanels.addChild(new Ammo())
   uiPanels.addChild(new MiniMap())
+  root.addChild(debugTools)
   
   const level = new Level();
   level.addChild(new OtherPlayers())
 
   root.addChild(playerScreenWipe)
-  root.addChild(debugScreenWipe)
   root.addChild(level)
   root.addChild(player)
   root.addChild(new FieldOfVison())

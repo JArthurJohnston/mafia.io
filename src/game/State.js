@@ -25,6 +25,7 @@ class GameState {
     this.otherPlayers = [
       new PlayerModel('RagnarRoog', 1040 + GameScreen.center.x, 1040 + GameScreen.center.y)
     ]
+    this.bullets = {}
   }
 
   updatePlayerPosition(xOffset, yOffset){

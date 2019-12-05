@@ -5,6 +5,7 @@ import { GameScreen } from "../GraphicsHelper";
 import input from './engine/input/MouseInput'
 import { distanceBetween } from "./engine/shapes/Line";
 import GameServer from "./engine/networking/IOHandler";
+import { Bullet } from "./Bullet";
 
 const minViewableAngle = degreesToRadians(-45)
 const maxViewableAngle = degreesToRadians(45)
@@ -20,6 +21,10 @@ export default class OtherPlayers extends GameObject {
         this.localY = GameScreen.center.y
     }
 
+    start(){
+        this.spawn(new OtherBullets())
+    }
+
     addPlayer(player){
         this.spawn(new Frenemy(player))
     }
@@ -27,13 +32,22 @@ export default class OtherPlayers extends GameObject {
     name(){
         return 'OtherPlayers'
     }
+}
+
+class OtherBullets extends GameObject {
+
+    constructor(){
+        super()
+        this.addBullet = this.addBullet.bind(this);
+    }
 
     start(){
-        //spawn all the players
-        // state.otherPlayers.forEach(eachOtherPlayer => {
-        //     if(eachOtherPlayer.name !== state.player.name)
-        //         this.spawn(new Frenemy(eachOtherPlayer))
-        // });
+        GameServer.onBulletFired(this.addBullet)
+    }
+
+    addBullet({x, y, id, angle}){
+        if(!state.bullets[id])
+            this.spawn(new Bullet(x, y, angle, id))
     }
 }
 

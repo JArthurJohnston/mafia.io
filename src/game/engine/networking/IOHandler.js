@@ -37,6 +37,16 @@ class IOHandler {
         })
     }
 
+    onBulletFired(callback){
+        console.log('bullet callback registered');
+        
+        this.socket.on('bulletReceived', (bullet) => {
+            console.log(`new bullet ${bullet}`);
+            
+            callback(bullet)
+        } )
+    }
+
     dispatchUpdates(newState){
         for (let i = 0; i < this.updateCallbacks.length; i++) {
             this.updateCallbacks[i](newState)
@@ -45,6 +55,10 @@ class IOHandler {
     
     onUpdate(callback){
         this.updateCallbacks.push(callback)
+    }
+
+    spawnBullet(x, y, angle){
+        this.socket.emit('bulletFired', {x, y, angle})
     }
 }
 

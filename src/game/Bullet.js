@@ -3,12 +3,19 @@ import { degreesToRadians, rotatePoint } from "./engine/math/PointMath";
 import state from './State'
 import { Explosion } from "./Explosion";
 import { simpleRaycast } from "./engine/physics/RayCast";
+import GameServer from "./engine/networking/IOHandler";
 
 const oneEighty = degreesToRadians(180)
 
 export class Bullet extends GameObject {
 
-    constructor(x, y, angle, targetX, targetY){
+    static fire(x, y, angle){
+        const id = `${state.player.name}:${Date.now}`
+        GameServer.spawnBullet(x, y, angle, id)
+        return new Bullet(x, y, angle, id)
+    }
+
+    constructor(x, y, angle, id){
         super()
         this.prevX = x
         this.prevY = y
@@ -16,7 +23,7 @@ export class Bullet extends GameObject {
         this.localY = y
         this.distance = 0
         this.angle = angle - oneEighty
-        this.target = {x: targetX, y: targetY}
+        this.id = id
     }
 
     get name(){
@@ -24,15 +31,11 @@ export class Bullet extends GameObject {
     }
 
     start(){
-        state.player.ammo -= 1
+        state.bullets[this.id] = this
         this.maxDistance = 1000
         this.size = 6
         this.speed = 20
-        
-        // let result = raycast(this.offsetX, this.offsetY, this.target.x, this.target.y)
-        // if(result){
-        //     alert(result)
-        // }
+        GameServer.spawnBullet(-this.localX, -this.localY, this.angle, this.id)
     }
 
     update(delta){
@@ -52,17 +55,14 @@ export class Bullet extends GameObject {
 
         let result = simpleRaycast(this.prevX, this.prevY, this.offsetX, this.offsetY)
 
-        // if(state.map.tileFromScreenSpace(this.offsetX, this.offsetY) !== 0){
-            if(result){
-            //     let xDelta = result[0] - this.offsetX
-            //     let yDelta = result[1] - this.offsetY
-            // this.parent.spawn(new Explosion(this.localX + xDelta, this.localY + yDelta))
+        if(result){
             result.object.hit()
             this.explode(this.localX, this.localY)
         }
     }
 
     explode(x, y){
+        delete state.bullets[this.id]
         this.parent.spawn(new Explosion(x, y))
         this.destroy()
     }
