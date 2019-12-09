@@ -1,9 +1,11 @@
 import socket from 'socket.io-client'
 import state from '../../State'
+import axios from 'axios'
 
 class IOHandler {
 
     init(url){
+        this.url = url
         this.updateCallbacks = []
         this.playerReceived = false
         this.dispatchUpdates = this.dispatchUpdates.bind(this);
@@ -27,6 +29,11 @@ class IOHandler {
                 x, y, name
             })
         // }
+    }
+
+    getAllPlayers(callback){
+        this.socket.on('allPlayers', callback)
+        this.socket.emit('getAllPlayers')
     }
 
     onPlayerAdded(callback){

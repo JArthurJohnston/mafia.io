@@ -9,7 +9,7 @@ import { UIPanels } from "./UIPanels";
 
 // import { CacheView } from "./engine/debug/CacheView";
 // import { getCache } from "./engine/Images";
-import OtherPlayers from "./OtherPlayers";
+import NetworkObjects from "./NetworkObjects";
 import { ScreenWipe } from "./ScreenWipe";
 import { ScreenInfoView } from "./debugging/ScreenInfoView";
 import MousePosition from "./debugging/MousePosition";
@@ -32,7 +32,7 @@ export function init(){
           
   const level = 
     new Level()
-      .addChild(new OtherPlayers())
+      .addChild(new NetworkObjects())
       
   const playerScreenWipe = new ScreenWipe()
   playerScreenWipe.layer = 'players'
@@ -45,6 +45,6 @@ export function init(){
       .addChild(new Player())
       .addChild(new FieldOfVison())
       .addChild(uiPanels)
-  //    .addChild(new CacheView(getCache()))
+  //   .addChild(new CacheView(getCache()))
   return root
 }
