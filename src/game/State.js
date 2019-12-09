@@ -2,6 +2,8 @@ import mapTiles from "./maps/default2.json"
 import { GameScreen } from "../GraphicsHelper.js"
 import GameServer from "./engine/networking/IOHandler.js"
 import getName from 'node-random-name'
+import PlayerModel from "./models/PlayerModel.js"
+import Tile from "./models/Tile.js"
 
 class GameState {
 
@@ -78,33 +80,6 @@ class TileSet {
       return -1
     }
     return new Tile(xIndex, yIndex, this.tileAt(xIndex, yIndex))
-  }
-}
-
-class Tile {
-  constructor(x, y, index){
-    this.index = index
-    this.position = {x, y}
-  }
-
-  hit(){}
-}
-
-export const PLAYER_STATES = {
-  ALIVE: 'ALIVE',
-  DEAD:'DEAD'
-}
-
-class PlayerModel {
-  constructor(name, x, y){
-    this.state = PLAYER_STATES.ALIVE
-    this.name = name
-    this.x = x
-    this.y = y
-  }
-
-  hit(){
-    this.state = PLAYER_STATES.DEAD
   }
 }
 
