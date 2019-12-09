@@ -53,7 +53,7 @@ export class Level extends GameObject {
   }
 
   handleMouseClick(x, y){
-    if(state.player.ammo > 0){
+    if(state.player.ammo > 0 && !state.player.isReloading){
       state.player.ammo -= 1
       let angle = angleBetween(GameScreen.center.x, GameScreen.center.y , x, y)
       this.spawn(Bullet.fire(this.offsetX, this.offsetY, angle))

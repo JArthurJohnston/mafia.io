@@ -14,6 +14,7 @@ class GameState {
       offsetY:0,
       direction: 0,
       ammo: 6,
+      isReloading: false,
       name: getName(),
     }
     this.otherPlayers = [
