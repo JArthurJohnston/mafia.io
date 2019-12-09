@@ -62,14 +62,6 @@ export function drawTilesOn(context, tiles, w, h, size=TILE_SIZE){
       drawStoneFloorOn(context, xPosition, yPosition)
       if(tileIndex > 0)
         tileFunctions[tileIndex](context, xPosition, yPosition)
-      // drawText(context, xPosition,yPosition, `(${x},${y})` )
-      // drawText(context, xPosition + 10,yPosition + 20, `${tiles[y][x]}` )
     }
   }
-}
-
-function drawText(context, x, y, text, color = "white", font = "10px Arial"){
-  context.fillStyle = color;
-  context.font = font;
-  context.fillText(text, x, y);
 }

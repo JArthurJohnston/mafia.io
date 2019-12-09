@@ -63,6 +63,7 @@ export class GameObject {
   addChild(gameObject){
     gameObject.parent = this
     this.children.push(gameObject);
+    return this
   }
 
   removeChild(gameObject){

@@ -1,6 +1,5 @@
 import { state } from "../../State"
 import { distanceBetween } from "../shapes/Line"
-import { GameScreen } from "../../../GraphicsHelper"
 
 /**
  * returns all the points on a line between (x0, y0) and (x1, y1)

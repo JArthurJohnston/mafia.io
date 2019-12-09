@@ -3,12 +3,6 @@ import { GameScreen } from "../GraphicsHelper.js"
 import GameServer from "./engine/networking/IOHandler.js"
 import getName from 'node-random-name'
 
-class MainPlayer {
-  constructor(){
-    
-  }
-}
-
 class GameState {
 
   constructor(){

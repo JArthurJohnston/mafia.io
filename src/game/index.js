@@ -15,33 +15,36 @@ import { ScreenInfoView } from "./debugging/ScreenInfoView";
 import MousePosition from "./debugging/MousePosition";
 
 export function init(){
-  const root = new GameObject()
-  const player = new Player()
-  const uiPanels = new UIPanels();
-  
-  const debugTools = new GameObject()
   const debugScreenWipe = new ScreenWipe()
   debugScreenWipe.layer = 'debug'
-  debugTools.addChild(debugScreenWipe)
-  debugTools.addChild(new FPSView());
-  debugTools.addChild(new ScreenInfoView())
-  debugTools.addChild(new MousePosition())
+
+  const debugTools =
+    new GameObject()
+      .addChild(debugScreenWipe)
+      .addChild(new FPSView())
+      .addChild(new ScreenInfoView())
+      .addChild(new MousePosition())
   
+  const uiPanels = 
+    new UIPanels()
+      .addChild(new Ammo())
+      .addChild(new MiniMap())
+          
+  const level = 
+    new Level()
+      .addChild(new OtherPlayers())
+      
   const playerScreenWipe = new ScreenWipe()
   playerScreenWipe.layer = 'players'
 
-  uiPanels.addChild(new Ammo())
-  uiPanels.addChild(new MiniMap())
-  root.addChild(debugTools)
-  
-  const level = new Level();
-  level.addChild(new OtherPlayers())
-
-  root.addChild(playerScreenWipe)
-  root.addChild(level)
-  root.addChild(player)
-  root.addChild(new FieldOfVison())
-  root.addChild(uiPanels)
-  // root.addChild(new CacheView(getCache()))
+  const root = 
+    new GameObject()    
+      .addChild(debugTools)
+      .addChild(playerScreenWipe)
+      .addChild(level)
+      .addChild(new Player())
+      .addChild(new FieldOfVison())
+      .addChild(uiPanels)
+  //    .addChild(new CacheView(getCache()))
   return root
 }

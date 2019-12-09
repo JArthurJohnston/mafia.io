@@ -7,8 +7,6 @@ import { load } from '../game/engine/Images'
 import spritesheet from "../res/sprite-sheet.png"
 
 const FRAME_INTERVAL = 1000 / 30 //30 fps
-const HEIGHT = window.innerHeight
-const WIDTH = window.innerWidth
 
 export class Canvas extends Component {
 
@@ -38,8 +36,8 @@ export class Canvas extends Component {
             debug: this.refs.debugCanvas,
         }
         this.refs.debugCanvas.addEventListener('contextmenu', event => event.preventDefault())
-        this.graphics = new GraphicsHelper(canvases, WIDTH, HEIGHT)
-        this.graphics.drawText(WIDTH/2, HEIGHT/2, "LOADING...", "white")
+        this.graphics = new GraphicsHelper(canvases, GameScreen.width, GameScreen.height)
+        this.graphics.drawText(GameScreen.width/2, GameScreen.height/2, "LOADING...", "white")
         MouseInput.init()
         
         load(spritesheet).then(() => {
@@ -51,11 +49,11 @@ export class Canvas extends Component {
     render() { 
         return (
             <>
-                <canvas ref="defaultCanvas" width={WIDTH} height={HEIGHT}></canvas>
-                <canvas ref="fovCanvas" width={WIDTH} height={HEIGHT}></canvas>
-                <canvas ref="playerCanvas" width={WIDTH} height={HEIGHT}></canvas>
-                <canvas ref="uiCanvas" width={WIDTH} height={HEIGHT}></canvas>
-                <canvas ref="debugCanvas" width={WIDTH} height={HEIGHT} onClick={MouseInput.handleClick}></canvas>
+                <canvas ref="defaultCanvas" width={GameScreen.width} height={GameScreen.height}></canvas>
+                <canvas ref="fovCanvas" width={GameScreen.width} height={GameScreen.height}></canvas>
+                <canvas ref="playerCanvas" width={GameScreen.width} height={GameScreen.height}></canvas>
+                <canvas ref="uiCanvas" width={GameScreen.width} height={GameScreen.height}></canvas>
+                <canvas ref="debugCanvas" width={GameScreen.width} height={GameScreen.height} onClick={MouseInput.handleClick}></canvas>
                 {/* <div 
                     ref='screenInput' 
                     style={{width: '100vw', height: '100vh'}} 

@@ -5,17 +5,12 @@ import { state } from './State'
 import MouseInput from "./engine/input/MouseInput"
 import { Bullet } from "./Bullet";
 import { GameScreen } from "../GraphicsHelper";
-import { angleBetween, radiansToDegrees } from "./engine/math/PointMath";
-import { UIPanels } from "./UIPanels";
-import { hitAnotherPlayer } from "./engine/physics/RayCast";
-import GameServer from "./engine/networking/IOHandler";
+import { angleBetween } from "./engine/math/PointMath";
 
 const wKey = keyBinding("w")
 const aKey = keyBinding("a")
 const sKey = keyBinding("s")
 const dKey = keyBinding("d")
-
-const UI_HEIGHT = Math.floor(GameScreen.height * 0.15);
 
 export class Level extends GameObject {
 
@@ -40,10 +35,6 @@ export class Level extends GameObject {
   update(delta){
     let [xMove, yMove] = this.handleKeyboardInput(delta)
 
-    // if(hitAnotherPlayer(GameScreen.center.x + xMove, GameScreen.center.y + yMove)){
-    //   return;
-    // }
-
     if(xMove !== 0 || yMove !== 0){
       if(this.canMoveVertically(yMove))
         this.localY += Math.floor(yMove)
@@ -55,12 +46,10 @@ export class Level extends GameObject {
 
   canMoveVertically(yMove){
     return state.map.playerTile(this.offsetX, this.offsetY + yMove) === 0 //&&
-      // hitAnotherPlayer(this.offsetX, this.offsetY + yMove) === null
   }
 
   canMoveHorizontally(xMove){
     return state.map.playerTile(this.offsetX + xMove, this.offsetY) === 0 //&&
-      // hitAnotherPlayer(this.offsetX + xMove, this.offsetY) === null
   }
 
   handleMouseClick(x, y){

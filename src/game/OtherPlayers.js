@@ -93,7 +93,7 @@ class Frenemy extends GameObject {
     visibleToPlayer(){
         let angle = angleFromPoints(GameScreen.center.x, GameScreen.center.y, this.offsetX, this.offsetY, input.x, input.y)
         const distanceToPlayer = distanceBetween(this.offsetX, this.offsetY, GameScreen.center.x, GameScreen.center.y)
-        return angle > minViewableAngle && angle < maxViewableAngle || distanceToPlayer <= 70
+        return (angle > minViewableAngle && angle < maxViewableAngle) || distanceToPlayer <= 70
     }
     
     render(graphics){
