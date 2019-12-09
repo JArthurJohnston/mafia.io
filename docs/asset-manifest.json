@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/mafia.io/static/css/main.6c034ecc.chunk.css",
-    "main.js": "/mafia.io/static/js/main.bd57dd66.chunk.js",
-    "main.js.map": "/mafia.io/static/js/main.bd57dd66.chunk.js.map",
-    "runtime-main.js": "/mafia.io/static/js/runtime-main.df20a5af.js",
-    "runtime-main.js.map": "/mafia.io/static/js/runtime-main.df20a5af.js.map",
-    "static/js/2.7836bbdd.chunk.js": "/mafia.io/static/js/2.7836bbdd.chunk.js",
-    "static/js/2.7836bbdd.chunk.js.map": "/mafia.io/static/js/2.7836bbdd.chunk.js.map",
+    "main.css": "/mafia.io/static/css/main.7c5d707a.chunk.css",
+    "main.js": "/mafia.io/static/js/main.17cd73ee.chunk.js",
+    "main.js.map": "/mafia.io/static/js/main.17cd73ee.chunk.js.map",
+    "runtime-main.js": "/mafia.io/static/js/runtime-main.eec2cfaf.js",
+    "runtime-main.js.map": "/mafia.io/static/js/runtime-main.eec2cfaf.js.map",
+    "static/js/2.f5332adb.chunk.js": "/mafia.io/static/js/2.f5332adb.chunk.js",
+    "static/js/2.f5332adb.chunk.js.map": "/mafia.io/static/js/2.f5332adb.chunk.js.map",
     "index.html": "/mafia.io/index.html",
-    "precache-manifest.124e6db3c85bf99071493821b7e1e2b1.js": "/mafia.io/precache-manifest.124e6db3c85bf99071493821b7e1e2b1.js",
+    "precache-manifest.34007cac50fd184a7b73059d91bba072.js": "/mafia.io/precache-manifest.34007cac50fd184a7b73059d91bba072.js",
     "service-worker.js": "/mafia.io/service-worker.js",
-    "static/css/main.6c034ecc.chunk.css.map": "/mafia.io/static/css/main.6c034ecc.chunk.css.map"
+    "static/css/main.7c5d707a.chunk.css.map": "/mafia.io/static/css/main.7c5d707a.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.df20a5af.js",
-    "static/js/2.7836bbdd.chunk.js",
-    "static/css/main.6c034ecc.chunk.css",
-    "static/js/main.bd57dd66.chunk.js"
+    "static/js/runtime-main.eec2cfaf.js",
+    "static/js/2.f5332adb.chunk.js",
+    "static/css/main.7c5d707a.chunk.css",
+    "static/js/main.17cd73ee.chunk.js"
   ]
 }
