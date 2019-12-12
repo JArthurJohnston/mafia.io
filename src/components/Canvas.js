@@ -5,6 +5,7 @@ import MouseInput from '../game/engine/input/MouseInput'
 import GameServer from '../game/engine/networking/IOHandler'
 import { load } from '../game/engine/Images'
 import spritesheet from "../res/sprite-sheet.png"
+import DebugCommands from './DebugCommands'
 
 const FRAME_INTERVAL = 1000 / 30 //30 fps
 
@@ -62,6 +63,7 @@ export class Canvas extends Component {
                         // MouseInput.handleClick()
                     }}
                 /> */}
+                <DebugCommands />
             </>
         )
     }

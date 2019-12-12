@@ -25,7 +25,7 @@ export default class NetworkObjects extends GameObject {
     start(){
         this.spawn(new OtherBullets())
 
-        GameServer.getAllPlayers(players => {
+        GameServer.getAllPlayers().then(players => {
             players.forEach(player => {
                 this.addPlayer(player)
             })

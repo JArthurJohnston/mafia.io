@@ -24,16 +24,13 @@ class IOHandler {
     }
 
     playerMoved(x, y, name){
-        // if(this.playerReceived){
-            this.socket.emit('playerMoved', {
-                x, y, name
-            })
-        // }
+        this.socket.emit('playerMoved', {
+            x, y, name
+        })
     }
 
-    getAllPlayers(callback){
-        this.socket.on('allPlayers', callback)
-        this.socket.emit('getAllPlayers')
+    getAllPlayers(){
+        return axios.get(`/players`).then(response => response.data)
     }
 
     onPlayerAdded(callback){
