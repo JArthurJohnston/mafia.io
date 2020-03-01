@@ -6,7 +6,8 @@ import input from './engine/input/MouseInput'
 import { distanceBetween } from "./engine/shapes/Line";
 import GameServer from "./engine/networking/IOHandler";
 import { Bullet } from "./Bullet";
-import PlayerModel, { PLAYER_STATES } from "./models/PlayerModel";
+import PlayerModel from "./models/PlayerModel";
+import { PLAYER_STATES } from "./Player";
 
 const minViewableAngle = degreesToRadians(-45)
 const maxViewableAngle = degreesToRadians(45)
@@ -67,7 +68,7 @@ class Frenemy extends GameObject {
         this.playerUpdated = this.playerUpdated.bind(this);
         GameServer.onUpdate(this.playerUpdated)
     }
-
+ 
     name(){
         return 'Frenemy'
     }

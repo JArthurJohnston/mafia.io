@@ -4,6 +4,7 @@ import GameServer from "./engine/networking/IOHandler.js"
 import getName from 'node-random-name'
 import PlayerModel from "./models/PlayerModel.js"
 import Tile from "./models/Tile.js"
+import { PLAYER_STATES } from "./Player.js"
 
 class GameState {
 
@@ -18,6 +19,7 @@ class GameState {
       ammo: 6,
       isReloading: false,
       name: getName(),
+      state: PLAYER_STATES.ALIVE,
     }
     this.otherPlayers = [
       new PlayerModel('RagnarRoog', 1040 + GameScreen.center.x, 1040 + GameScreen.center.y)

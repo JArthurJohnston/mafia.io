@@ -1,6 +1,7 @@
 import socket from 'socket.io-client'
 import state from '../../State'
 import axios from 'axios'
+import { PLAYER_STATES } from '../../Player'
 
 class IOHandler {
 
@@ -13,13 +14,21 @@ class IOHandler {
         this.socket.on('connected', () => this.addPlayer())
         this.socket.on('playerReceived', () => this.playerReceived = true)
         this.socket.on('state_of_the_world', this.dispatchUpdates)
+        this.socket.on('playerKilled', this.handleDeath)
+    }
+
+    handleDeath(player){
+        if(player.name === state.player.name){
+            state.player.state = PLAYER_STATES.DEAD
+        }
     }
 
     addPlayer(){
         this.socket.emit('playerAdded', {
             x: state.player.offsetX, 
             y: state.player.offsetY, 
-            name: state.player.name
+            name: state.player.name,
+            state: state.player.state
         })
     }
 
@@ -41,11 +50,12 @@ class IOHandler {
         })
     }
 
+    killPlayer(player){
+        this.socket.emit('playerHit', player)
+    }
+
     onBulletFired(callback){
-        console.log('bullet callback registered');
-        
         this.socket.on('bulletReceived', (bullet) => {
-            console.log(`new bullet ${bullet}`);
             
             callback(bullet)
         } )
