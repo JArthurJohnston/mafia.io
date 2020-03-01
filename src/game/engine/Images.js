@@ -138,6 +138,10 @@ export function drawPlayerOn(context, x, y) {
   context.drawImage(cache, 0,0,SPRITE_WIDTH,SPRITE_HEIGHT, x, y,SPRITE_WIDTH,SPRITE_HEIGHT)
 }
 
+export function drawDeadPlayerOn(context, x, y){
+  context.drawImage(cache, 60, 40, SPRITE_WIDTH, SPRITE_HEIGHT, x, y, SPRITE_WIDTH, SPRITE_HEIGHT)
+}
+
 export function drawStoneFloorOn(context, x, y) {
   context.drawImage(cache, 40,0,40,40, x, y,40,40)
 }

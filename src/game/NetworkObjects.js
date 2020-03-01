@@ -107,7 +107,11 @@ class Frenemy extends GameObject {
         if(this.visibleToPlayer()){
             graphics.setLayer('players')
             graphics.drawText(this.offsetX - 50, this.offsetY - 25, this.player.name, "red", '15px arial')
-            graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, this.color)
+            if(this.player.state === PLAYER_STATES.ALIVE){
+                graphics.drawRect(this.offsetX - 20, this.offsetY - 20, 40, 40, this.color)
+            } else {
+                graphics.drawDeadPlayer(this.offsetY - 20, this.offsetY - 20)
+            }
             graphics.restore()
         }
     }
