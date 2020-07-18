@@ -6,7 +6,7 @@
   "homepage": "https://jarthurjohnston.github.io/mafia.io/",
   "dependencies": {
     "axios": "^0.19.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "node-random-name": "^1.0.1",
     "node-sass": "^4.13.1",
     "react": "^16.10.2",
